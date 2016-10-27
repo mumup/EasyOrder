@@ -1,5 +1,12 @@
-extends ../layout
+extends ../includes/layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  nav
+    .nav-wrapper.blue.lighten-2
+      a.brand-logo.center(href='#!') 我是LOGO
+      ul.right.hide-on-med-and-down
+        li
+          a(href='sass.html') 登陆
+        li
+          a(href='badges.html') 注册
+

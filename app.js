@@ -2,13 +2,18 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var config = require('./config.js');
 
 var routes = require('./routes/index');
 var admin = require('./routes/admin');
 
+mongoose.connect(config.mdb.url);//初始化连接
+
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views/pages'));
@@ -30,7 +35,8 @@ app.use('/admin', admin);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
-  res.render('404');
+  res.status(err.status || 404);
+  // res.render('404');
   next(err);
 });
 

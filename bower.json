@@ -1,0 +1,17 @@
+{
+  "name": "EasyOrder",
+  "description": "一个简单的内网订餐系统",
+  "main": "",
+  "authors": [
+    "panlin <pmumu142535@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mumup/EasyOrder",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
