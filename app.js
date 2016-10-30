@@ -1,20 +1,24 @@
-var express = require('express');
-var path = require('path');
+var express = require('express');  //主文件
+var path = require('path');    //路径
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');  				      // session依赖cookie模块
+var mongoStore = require('connect-mongo')(session);	  // 对session进行持久化
 var config = require('./config.js');
 
 var routes = require('./routes/index');
 var admin = require('./routes/admin');
 var login = require('./routes/login');
 
-mongoose.connect(config.mdb.url);//初始化连接
+mongoose.connect(config.url);//初始化连接
 
 var app = express();
 
+
+app.locals.moment = require('moment');// 引入moment模块并设置为app.locals属性,用来格式化时间
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views/pages'));
@@ -32,6 +36,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/admin', admin);
 app.use('/login', login);
+
+
+app.use(session({
+    secret:'tz',                          // 设置的secret字符串，来计算hash值并放在cookie中
+    resave: false,                                    // session变化才进行存储
+    saveUninitialized: true,
+    // 使用mongo对session进行持久化，将session存储进数据库中
+    store: new mongoStore({
+        url: config.url,                                     // 本地数据库地址
+        collection: 'sessions'                          // 存储到mongodb中的字段名
+    })
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

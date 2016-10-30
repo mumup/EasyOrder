@@ -9,6 +9,7 @@ nav .brand-logo{
   color: #000;
 }
 
+
 main {
   flex: 1 0 auto;
 }
@@ -19,7 +20,7 @@ footer.page-footer{
 
 .login-wrap{
   position: fixed;
-  //display: none;
+  display: none;
   top: 50%;
   left: 50%;
   margin-top: -250px;
@@ -28,6 +29,10 @@ footer.page-footer{
   height: 500px;
   z-index: 9999;
   background: #f3f3f3;
+}
+
+.login-btn{
+  text-align: center;
 }
 
 .mask-wrap{
