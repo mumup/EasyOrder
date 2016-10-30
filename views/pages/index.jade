@@ -1,12 +1,29 @@
 extends ../includes/layout
 
 block content
-  nav
-    .nav-wrapper.blue.lighten-2
-      a.brand-logo.center(href='#!') 我是LOGO
-      ul.right.hide-on-med-and-down
-        li
-          a(href='sass.html') 登陆
-        li
-          a(href='badges.html') 注册
+
+    nav
+        .nav-wrapper.white
+            a.brand-logo.center(href='#!') 我是LOGO
+            ul.right.hide-on-med-and-down
+                li
+                    a#login(href='/login') 登陆
+                li
+                    a(href='/login') 注册
+    div.login-wrap.z-depth-2
+        div.login-box.row
+            form.col.s12
+                div.row
+                    h3.login-tit login
+                div.row
+                    div.input-field.col.s12
+                        input#user.validate(type="text")
+                        label(for="user") 账号
+                div.row
+                    div.input-field.col.s12
+                        input#password.validate(type="password")
+                        label(for="user") 密码
+    div.mask-wrap
+block append foot
+    script(src="/js/base.js")
 

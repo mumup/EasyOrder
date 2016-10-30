@@ -9,6 +9,7 @@ var config = require('./config.js');
 
 var routes = require('./routes/index');
 var admin = require('./routes/admin');
+var login = require('./routes/login');
 
 mongoose.connect(config.mdb.url);//初始化连接
 
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/admin', admin);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
