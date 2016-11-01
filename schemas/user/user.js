@@ -1,4 +1,3 @@
-'use strict';
 
 var mongoose = require('mongoose'),
     bcrypt     = require('bcrypt'),
@@ -50,6 +49,18 @@ UserSchema.pre("save",function (next) {
         })
     })
 });
+
+UserSchema.methods = {
+    comparePassword : function (password,cb) {
+        //使用bcrypt的compare方法进行密码比对
+        bcrypt.compare(password,this.password,function (err,isMatch) {
+            if (err){
+                return cb(err);
+            }
+            cb(null,isMatch);
+        })
+    }
+};
 
 // 给模型添加静态方法
 UserSchema.static = {
