@@ -69,8 +69,6 @@ app.use(session({
 
 
 
-// error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {

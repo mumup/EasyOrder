@@ -4,7 +4,7 @@ block content
 
     nav
         .nav-wrapper.white
-            a.brand-logo.center(href='#!') 我是LOGO
+            a.brand-logo.center(href='#!') #{title}
             ul.right.hide-on-med-and-down
                 li
                     a#login(href='/login') 登陆
@@ -12,21 +12,22 @@ block content
                     a(href='/login') 注册
     div.login-wrap.z-depth-2
         div.login-box.row
-            form.col.s12
+            form#loginFrom.col.s12(method="POST", action="/user/login")
                 div.row
                     h3.login-tit login
                 div.row
                     div.input-field.col.s12
-                        input#user.validate(type="text")
+                        input#user.validate(name="user",type="text")
                         label(for="user") 账号
                 div.row
                     div.input-field.col.s12
-                        input#password.validate(type="password")
-                        label(for="user") 密码
+                        input#password.validate(name="password",type="password")
+                        label(for="password") 密码
                  div.row
                      div.login-btn.col.s12
-                         button.btn.waves-effect.waves-light(type = "submit",name = "action") 一键开车
+                         button#login-sub.btn.waves-effect.waves-light(type = "submit") 一键开车
     div.mask-wrap
 block append foot
     script(src="/js/base.js")
+    script(src="/js/index.js")
 

@@ -1,5 +1,5 @@
 var EasyOrder = require("../app/controllers/user/user");
-
+var app = require('../app');
 
 module.exports = function (app) {
 
@@ -10,8 +10,9 @@ module.exports = function (app) {
     });
 
     // 公共路由
+    app.get("/",EasyOrder.index); //首页首页
+    app.use("/user/login",EasyOrder.login);
 
-    app.get('/',EasyOrder.index);
 
 
     // catch 404 and forward to error handler

@@ -2,7 +2,7 @@ var mongoose = require("mongoose"),
     User = mongoose.model("User");
 
 // 登录控制器
-exports.signin = function (req,res) {
+exports.login = function (req,res) {
     var user = req.query.user || "",
         _user = {};
     user = user.split("&");
