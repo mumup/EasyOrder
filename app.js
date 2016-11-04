@@ -10,9 +10,7 @@ var session = require('express-session');  				      // session依赖cookie模�
 var mongoStore = require('connect-mongo')(session);	  // 对session进行持久化
 var config = require('./config.js');
 
-var routes = require('./routes/index');
-var admin = require('./routes/admin');
-var login = require('./routes/login');
+
 
 mongoose.connect(config.url);//初始化连接
 
@@ -34,13 +32,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/admin', admin);
-app.use('/login', login);
 
 // models loading
-var models_path = __dirname + '/models/';
-
+var models_path = __dirname + '/app/models';            // 模型所在路径
 // 路径加载函数，加载各模型的路径,所以可以直接通过mongoose.model加载各模型 这样即使模型路径改变也无需更改路径
 var walk = function(path) {
     fs
@@ -59,7 +53,7 @@ var walk = function(path) {
             }
         });
 };
-walk(models_path);                                  // 加载模型所在路径
+walk(models_path);
 
 
 app.use(session({
@@ -73,14 +67,7 @@ app.use(session({
     })
 }));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  res.status(err.status || 404);
-  // res.render('404');
-  next(err);
-});
+
 
 // error handlers
 

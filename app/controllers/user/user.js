@@ -65,3 +65,10 @@ exports.adminRequired = function(req,res,next) {
     }
     next();
 };
+
+exports.index = function (req,res) {
+    res.render('index', {
+        title:'首页',
+        logo:'movie'
+    });
+};
