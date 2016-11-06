@@ -11,7 +11,7 @@ var login_obj = {
     init:function () {
         //预留位置放东西，前期只做简单的登录
 
-        console.log("sss")
+
         login_obj.event_bind();
     },
     //普通登录
@@ -35,19 +35,27 @@ var login_obj = {
         $.ajax({
             url:"/user/login",
             data:post_data,
+            dataType:"json",
             type:'POST',
             timeout:30000,
             success:function (data) {
                 var status = data["status"];
-                if (status == 0){
-                    alert("用户不存在")
+                if (status == 3){
+                    location.href = "/";
                 }else {
-                    if (status = 1){
+                    if (status == 1){
                         alert("密码错误")
                     }else {
-                        alert("登录成功")
+                        alert("用户不存在")
                     }
                 }
+                // switch (status){
+                //     case 3:alert("登录成功");
+                //         break;
+                //     case 2:alert("没有这个用户");
+                //         break;
+                //     case 1:alert("密码错误")
+                // }
             }
         })
     },
@@ -55,9 +63,15 @@ var login_obj = {
     // 监听绑定
     event_bind:function () {
         $("#login-sub").on("click",function (e) {
-            e.preventDefault()
+            e.preventDefault();
             login_obj.default_submit();
-        })
+        });
+
+        $(".login-close").on("click",function () {
+                $(".mask-wrap").hide();
+                $(".login-wrap").hide();
+        });
+
     }
 
 

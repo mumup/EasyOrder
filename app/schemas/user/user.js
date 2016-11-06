@@ -1,4 +1,3 @@
-
 var mongoose = require('mongoose'),
     bcrypt     = require('bcrypt'),
     SALT_WORK_FACTOR = 10;
@@ -21,11 +20,6 @@ var UserSchema = new mongoose.Schema({
     meta:{
         createAt:{
             type: Date,
-            default:Date.now()
-        },
-
-        updateAt:{
-            type:Date,
             default:Date.now()
         }
     }

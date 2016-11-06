@@ -1,5 +1,6 @@
 extends ../includes/layout
-
+block append head
+    link(href='/css/index.css',rel='stylesheet')
 block content
 
     nav
@@ -7,14 +8,19 @@ block content
             a.brand-logo.center(href='#!') #{title}
             ul.right.hide-on-med-and-down
                 li
+                  if user
+                    a#logout(href='/logout') 退出
+                   else
                     a#login(href='/login') 登陆
                 li
                     a(href='/login') 注册
     div.login-wrap.z-depth-2
+        div.login-close
+            i.iconfont.icon-guanbi
         div.login-box.row
             form#loginFrom.col.s12(method="POST", action="/user/login")
                 div.row
-                    h3.login-tit login
+                    h3.login-tit 登录
                 div.row
                     div.input-field.col.s12
                         input#user.validate(name="user",type="text")

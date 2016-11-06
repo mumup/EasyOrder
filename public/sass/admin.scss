@@ -1,0 +1,40 @@
+.float-btn{
+  position: fixed;
+  right: 5%;
+  bottom: 10%;
+}
+
+#admin-info{
+  height: 80%;
+
+
+  & .admin-wrap{
+    width: 100%;
+    height: 250px;
+
+  }
+
+  & .card-info{
+    height: 80%;
+    text-align: center;
+
+
+    & i{
+      display: inline-block;
+      font-size: 4rem;
+      line-height: 200px;
+      transition: all linear 1s;
+
+
+      &:hover{
+        transform: rotateY(180deg)
+      }
+    }
+  }
+
+  .card-tit{
+    height: 0;
+  }
+}
+
+

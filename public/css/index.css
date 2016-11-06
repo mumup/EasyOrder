@@ -1,0 +1,49 @@
+body {
+  background: url("../images/restaurant.png"); }
+
+nav .brand-logo {
+  color: #000; }
+
+footer.page-footer {
+  padding-top: 0; }
+
+.login-wrap {
+  position: fixed;
+  display: none;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -150px;
+  width: 300px;
+  z-index: 9999;
+  background: #f3f3f3; }
+  .login-wrap .login-box {
+    position: relative; }
+  .login-wrap .login-close {
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px; }
+    .login-wrap .login-close i {
+      line-height: 30px;
+      font-size: 26px;
+      display: inline-block;
+      -webkit-transition: all linear .3s;
+      transition: all linear .3s; }
+    .login-wrap .login-close:hover i {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg); }
+  .login-wrap .login-btn {
+    text-align: center; }
+
+.mask-wrap {
+  position: fixed;
+  display: none;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: #000000;
+  opacity: .6; }

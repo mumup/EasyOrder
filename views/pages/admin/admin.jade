@@ -1,0 +1,41 @@
+doctype
+html
+    head
+        title #{title}
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        include ../../includes/head
+        link(href="/css/admin.css" rel="stylesheet")
+    body
+        main
+            block center
+                div#admin-info.container
+                    div.section
+                        div.row
+                            div.col.s12.m6
+                                div.admin-wrap.z-depth-2
+                                    div.card-info
+                                        i.iconfont.icon-fabu
+                                        span 发布菜单
+                                    div.card-tit
+                                        a(href="#")
+                            div.col.s12.m6
+                                div.admin-wrap.z-depth-2
+                                    div.card-info
+                                        i.iconfont.icon-tianjia
+                                        span 添加菜单
+                        div.row
+                            div.col.s12.m6
+                                div.admin-wrap.z-depth-2
+                                    div.card-info
+                                        i.iconfont.icon-orders
+                                        span 订单管理
+                            div.col.s12.m6
+                                div.admin-wrap.z-depth-2
+                                    div.card-info
+                                        i.iconfont.icon-iconfont14
+                                        span 用户管理
+
+
+
+include ../../includes/footer
+include ../../includes/footjs

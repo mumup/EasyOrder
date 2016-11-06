@@ -3,17 +3,8 @@ var mongoose = require("mongoose"),
 
 // 登录控制器
 exports.login = function (req,res) {
-    var user = req.query.user || "",
-        _user = {};
-    user = user.split("&");
-    for(var i = 0 ;i < user.length; i++){
-        var p = user[i].indexOf("="),
-            name = user[i].substring(0,p),
-            value = user[i].substring(p + 1);
-        _user[name] = value;
-    }
-    var _name = _user.name || "",
-        _password = _user.password ||"";
+    var _name = req.body.user || "",
+     _password = req.body.password || "";
 
     User.findOne({name:_name},function (err,user) {
         if (err){
@@ -60,8 +51,9 @@ exports.singinRequired = function (req,res,next) {
 /* 用户权限中间件 */
 exports.adminRequired = function(req,res,next) {
     var _user = req.session.user;
-    if(_user && _user.role <= 10){
-        return res.redirect("/");
+    if(_user = "" || _user.role <= 10){
+        // return res.redirect("/");
+        return res.send("你根本不是老司机");
     }
     next();
 };

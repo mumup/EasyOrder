@@ -22,7 +22,7 @@ var filepath = {
 
 // 编译 scss
 gulp.task('css', function () {
-    return gulp.src(path.join(publicdir,'sass/style.scss'))
+    return gulp.src(path.join(publicdir,'sass/*.scss'))
         // .pipe(sourcemaps.init())
         .pipe(autofix())
         .pipe(sass().on('error', sass.logError))
