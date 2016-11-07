@@ -1,0 +1,33 @@
+doctype
+html
+    head
+        title #{title}
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        include ../../includes/head
+        link(href="/css/admin.css" rel="stylesheet")
+    body.user_list
+        main
+            block center
+                div.container
+                    div.row
+                        table.centered.highlight
+                            thead
+                                tr
+                                  th 用户名
+                                  th 姓名
+                                  th 权限
+                                  th 操作
+                            tbody
+                              each item in users
+                                tr
+                                  td #{item.account}
+                                  td #{item.name}
+                                  td #{item.role}
+                                  td
+                                    a.waves-effect.waves-light.btn 修改
+
+
+
+
+include ../../includes/footer
+

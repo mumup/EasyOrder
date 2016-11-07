@@ -22,3 +22,6 @@
         transform: rotateY(180deg); }
   #admin-info .card-tit {
     height: 0; }
+
+.user_list {
+  background: url("../images/skulls.png"); }

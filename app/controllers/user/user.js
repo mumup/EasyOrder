@@ -31,11 +31,58 @@ exports.login = function (req,res) {
     });
 };
 
+
+
 //登出
 
 exports.logout = function(req,res) {
     delete req.session.user;
     res.redirect('/');
+};
+
+
+//用户注册
+/* 用户注册控制器 */
+exports.signup = function(req,res) {
+    var user = req.body.user;                       // 获取post请求中的用户数据
+
+
+    // 使用findOne对数据库中user进行查找
+    User.findOne({account:user},function(err,user) {
+        if(err) {
+            console.log(err);
+        }
+        // 如果用户名已存在
+        if(user) {
+            return res.json({data:0});
+        }
+
+        // 数据库中没有该用户名，将其数据生成新的用户数据并保存至数据库
+        user = new User(_user);            // 生成用户数据
+        user.save(function(err,user) {
+            if(err){
+                console.log(err);
+            }
+            // req.session.user = user;         // 将当前登录用户名保存到session中
+            return res.json({data:2});       // 注册成功
+        });
+    });
+};
+
+
+// 用户列表
+/* 用户列表页面渲染控制器 */
+exports.user_list = function(req,res) {
+    User.find({})
+        .exec(function(err,users) {
+            if(err){
+                console.log(err);
+            }
+            res.render('admin/user_list', {
+                title:'用户列表页',
+                users:users
+            });
+        });
 };
 
 // 判断用户是否登录中间件
@@ -46,6 +93,8 @@ exports.singinRequired = function (req,res,next) {
     }
     next();
 };
+
+
 
 //用户权限中间件
 /* 用户权限中间件 */

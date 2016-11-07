@@ -3,10 +3,12 @@ var mongoose = require('mongoose'),
     SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
-    name:{
+    account:{
         unique:true,
         type:String
     },
+    name:String,
+
     password:String,
     /*
     0:普通用户
