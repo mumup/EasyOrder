@@ -19,15 +19,19 @@ html
                                   th 操作
                             tbody
                               each item in users
-                                tr
+                                tr(class="#{item._id}")
                                   td #{item.account}
                                   td #{item.name}
                                   td #{item.role}
                                   td
                                     a.waves-effect.waves-light.btn 修改
+                                    a(data-id="#{item._id}").del-btn.waves-effect.waves-light.btn.red 删除
+
+
 
 
 
 
 include ../../includes/footer
-
+block append foot
+    script(src="/js/admin.js")

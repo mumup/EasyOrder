@@ -6,7 +6,7 @@ exports.login = function (req,res) {
     var _name = req.body.user || "",
      _password = req.body.password || "";
 
-    User.findOne({name:_name},function (err,user) {
+    User.findOne({account:_name},function (err,user) {
         if (err){
             console.log(err);
         }
@@ -45,8 +45,14 @@ exports.logout = function(req,res) {
 /* 用户注册控制器 */
 exports.signup = function(req,res) {
     var user = req.body.user;                       // 获取post请求中的用户数据
+    var password = req.body.password;
+    var name = req.body.name;
 
-
+    var _user = {
+        account:user,
+        password:password,
+        name:name
+    };
     // 使用findOne对数据库中user进行查找
     User.findOne({account:user},function(err,user) {
         if(err) {
@@ -67,6 +73,21 @@ exports.signup = function(req,res) {
             return res.json({data:2});       // 注册成功
         });
     });
+};
+
+/* 用户删除控制器 */
+exports.del = function(req,res) {
+    // 获取客户端Ajax发送的URL值中的id值
+    var id  = req.query.id;
+    if(id) {
+        // 如果id存在则服务器中将该条数据删除并返回删除成功的json数据
+        User.remove({_id:id},function(err) {
+            if(err){
+                console.log(err);
+            }
+            res.json({status:1});              // 删除成功
+        });
+    }
 };
 
 

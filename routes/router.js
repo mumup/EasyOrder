@@ -15,8 +15,8 @@ module.exports = function (app) {
     app.post("/user/login",EasyOrder.login);         //登录接口
     app.get("/logout",EasyOrder.logout);
     app.get("/admin",EasyOrder.singinRequired,EasyOrder.adminRequired,Admin.index);           //管理员页面
-    app.route("/admin/user_list").get(EasyOrder.singinRequired,EasyOrder.adminRequired,EasyOrder.user_list);        //管理员页面
-
+    app.route("/admin/user_list").get(EasyOrder.singinRequired,EasyOrder.adminRequired,EasyOrder.user_list)//管理员页面
+                                      .delete(EasyOrder.del);
 
     // development error handler
 // will print stacktrace
