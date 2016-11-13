@@ -67,6 +67,13 @@ var login_obj = {
             login_obj.default_submit();
         });
 
+        // 登录部分
+        $("#login").on("click",function (e) {
+            $(".mask-wrap").show();
+            $(".login-wrap").show();
+            e.preventDefault();
+        });
+
         $(".login-close").on("click",function () {
                 $(".mask-wrap").hide();
                 $(".login-wrap").hide();

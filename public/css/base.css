@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont";
-  src: url("../iconfont/iconfont.eot?t=1478429680826");
+  src: url("../iconfont/iconfont.eot?t=1478916987032");
   /* IE9*/
-  src: url("../iconfont/iconfont.eot?t=1478429680826#iefix") format("embedded-opentype"), url("../iconfont/iconfont.woff?t=1478429680826") format("woff"), url("../iconfont/iconfont.ttf?t=1478429680826") format("truetype"), url("../iconfont/iconfont.svg?t=1478429680826#iconfont") format("svg");
+  src: url("../iconfont/iconfont.eot?t=1478916987032#iefix") format("embedded-opentype"), url("../iconfont/iconfont.woff?t=1478916987032") format("woff"), url("../iconfont/iconfont.ttf?t=1478916987032") format("truetype"), url("../iconfont/iconfont.svg?t=1478916987032#iconfont") format("svg");
   /* iOS 4.1- */ }
 
 .iconfont {
@@ -15,6 +15,9 @@
 
 .icon-orders:before {
   content: "\e69c"; }
+
+.icon-zhuye:before {
+  content: "\e601"; }
 
 .icon-guanbi:before {
   content: "\e603"; }

@@ -8,34 +8,19 @@ html
     body
         main
             block center
-                div#admin-info.container
-                    div.section
-                        div.row
-                            div.col.s12.m6
-                                div.admin-wrap.z-depth-2
-                                    div.card-info
-                                        i.iconfont.icon-fabu
-                                        span 发布菜单
-                                    div.card-tit
-                                        a(href="#")
-                            div.col.s12.m6
-                                div.admin-wrap.z-depth-2
-                                    div.card-info
-                                        i.iconfont.icon-tianjia
-                                        span 添加菜单
-                        div.row
-                            div.col.s12.m6
-                                div.admin-wrap.z-depth-2
-                                    div.card-info
-                                        i.iconfont.icon-orders
-                                        span 订单管理
-                            div.col.s12.m6
-                                div.admin-wrap.z-depth-2
-                                    div.card-info
-                                        i.iconfont.icon-iconfont14
-                                        span 用户管理
+                div.row.content-wrap
+                    include ../../includes/tool-bar
+                    div.main-wrap.col.s11
+                        nav
+                          div.nav-wrapper.white
+                        div.admin-info.row
+                            a.col.s12.m5 111
+                            a.col.s12.m5 111
+                            a.col.s12.m5 111
+                            a.col.s12.m5 111
 
 
 
-include ../../includes/footer
 
+include ../../includes/footjs
+    script(src="/js/admin.js")

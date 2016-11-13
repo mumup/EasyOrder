@@ -8,30 +8,58 @@ html
     body.user_list
         main
             block center
-                div.container
-                    div.row
-                        table.centered.highlight
+                div.row.content-wrap
+                    include ../../includes/tool-bar
+                    div.main-wrap.col.s11
+                        div.right-wrap
+                            div.nav-wrapper.white
+                                ul.right.hide-on-med-and-down
+                                    li
+                                      a(href="/")#add-user.iconfont.icon-tianjia.add-user
+                                    li
+                                      a(href="/")
+                        table.centered.highlight.container
                             thead
                                 tr
-                                  th 用户名
-                                  th 姓名
-                                  th 权限
-                                  th 操作
-                            tbody
-                              each item in users
-                                tr(class="#{item._id}")
-                                  td #{item.account}
-                                  td #{item.name}
-                                  td #{item.role}
-                                  td
-                                    a.waves-effect.waves-light.btn 修改
-                                    a(data-id="#{item._id}").del-btn.waves-effect.waves-light.btn.red 删除
+                                    th 用户名
+                                    th 姓名
+                                    th 权限
+                                    th 操作
+                            tbody#info-content
+                                each item in users
+                                    tr(class="#{item._id}")
+                                        td #{item.account}
+                                        td #{item.name}
+                                        td #{item.role}
+                                        td
+                                            a.waves-effect.waves-light.btn 修改
+                                            a(data-id="#{item._id}",onClick="deleteEl(this)").del-btn.waves-effect.waves-light.btn.red 删除
+            div(data-model="register").float-model.z-depth-2
+                div.res-tit
+                    span 添加用户
+                    span.close-btn.iconfont.icon-guanbi.right
+                div.container
+                    form#regFrom.col.s12(method="POST", action="/user/register")
+                        div.row
+                            div.input-field.col.s6
+                                input#user.validate(name="user",type="text")
+                                label(for="user") 账号
+                            div.input-field.col.s6
+                                input#name.validate(name="name",type="text")
+                                label(for="user") 姓名
+                        div.row
+                            div.input-field.col.s12
+                                input#password.validate(name="password",type="password")
+                                label(for="password") 密码
+                        div.row
+                            div.input-field.col.s12
+                                input#role.validate(name="role",type="text")
+                                label(for="password") 权限
+                        div.row
+                            div.reg-btn.col.s12
+                                button#adduser-sub.btn.waves-effect.waves-light(type = "submit") 添加老司机
 
 
 
-
-
-
-include ../../includes/footer
-block append foot
+include ../../includes/footjs
     script(src="/js/admin.js")

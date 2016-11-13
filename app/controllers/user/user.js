@@ -47,33 +47,47 @@ exports.signup = function(req,res) {
     var user = req.body.user;                       // 获取post请求中的用户数据
     var password = req.body.password;
     var name = req.body.name;
+    var role = req.body.role || "0";
 
     var _user = {
         account:user,
         password:password,
-        name:name
+        name:name,
+        role:role
     };
+    console.log(_user);
     // 使用findOne对数据库中user进行查找
-    User.findOne({account:user},function(err,user) {
+    User.findOne({account:user},function(err,account) {
         if(err) {
             console.log(err);
         }
         // 如果用户名已存在
-        if(user) {
-            return res.json({data:0});
+        if(account) {
+            return res.json({status:0,data:0});
         }
 
         // 数据库中没有该用户名，将其数据生成新的用户数据并保存至数据库
         user = new User(_user);            // 生成用户数据
-        user.save(function(err,user) {
+        user.save(function(err) {
             if(err){
                 console.log(err);
             }
+
             // req.session.user = user;         // 将当前登录用户名保存到session中
-            return res.json({data:2});       // 注册成功
+            return res.json({status:2,data:2,id:user._id});       // 注册成功
         });
     });
 };
+
+/* 用户修改控制器 */
+exports.update = function (req,res) {
+
+
+
+
+};
+
+
 
 /* 用户删除控制器 */
 exports.del = function(req,res) {

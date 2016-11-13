@@ -13,10 +13,12 @@ module.exports = function (app) {
     // 公共路由
     app.get("/",EasyOrder.index);                      //首页首页
     app.post("/user/login",EasyOrder.login);         //登录接口
-    app.get("/logout",EasyOrder.logout);
-    app.get("/admin",EasyOrder.singinRequired,EasyOrder.adminRequired,Admin.index);           //管理员页面
-    app.route("/admin/user_list").get(EasyOrder.singinRequired,EasyOrder.adminRequired,EasyOrder.user_list)//管理员页面
-                                      .delete(EasyOrder.del);
+    app.get("/logout",EasyOrder.logout);              //登出接口
+    app.post("/user/register",EasyOrder.signup);                      //注册接口
+    app.get("/admin",EasyOrder.singinRequired,EasyOrder.adminRequired,Admin.index);                          //管理员页面
+    app.route("/admin/user_list").get(EasyOrder.singinRequired,EasyOrder.adminRequired,EasyOrder.user_list)//用户列表页面
+                                      .delete(EasyOrder.del)                           //删除用户
+                                          .post();                                  //修改用户
 
     // development error handler
 // will print stacktrace

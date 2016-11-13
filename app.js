@@ -11,7 +11,7 @@ var mongoStore = require('connect-mongo')(session);	  // 对session进行持久�
 var config = require('./config.js');
 
 
-
+mongoose.Promise = global.Promise;  //解决mongoose's default promise library
 mongoose.connect(config.url);//初始化连接
 
 var app = express();
