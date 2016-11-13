@@ -98,3 +98,39 @@
     text-align: center;
   }
 }
+
+/**---------------
+       菜单页面
+       v 0.0.1
+------------------**/
+
+.menu-info{
+  margin: 5rem;
+  background: #fff;
+
+  & .input-field{
+    margin: 0 3rem;
+    padding: 2rem 0;
+  }
+
+  & .text-tit{
+    height: 3rem;
+    margin-bottom: 2rem;
+    background: #ccc;
+
+    & span{
+      padding: 1rem;
+      line-height: 3rem;
+      color: #fff;
+    }
+  }
+
+  & .sent-wrap{
+    text-align: center;
+    padding-bottom: 2rem;
+
+    & .send-btn{
+      margin-left: 1rem;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+doctype
+html
+    head
+        title #{title}
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        include ../../includes/head
+        link(href="/css/admin.css" rel="stylesheet")
+    body.user_list
+        main
+            block center
+                div.row.content-wrap
+                    include ../../includes/tool-bar
+                    div.main-wrap.col.s11
+                        nav
+                            div.nav-wrapper.white
+                        div.menu-info.z-depth-1
+                            div.text-content
+                                div.text-tit
+                                    span 创建菜单
+                                div.input-field
+                                    label(for="menu-text") 请在这里粘贴菜单,菜名之间用英文,分隔
+                                    textarea#menu-text.materialize-textarea
+                                div.sent-wrap
+                                    button.preview-btn.btn 预览菜单
+                                    button.send-btn.btn.blue.lighten-1 发送菜单
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+include ../../includes/footjs
+    script(src="/js/admin.js")
+

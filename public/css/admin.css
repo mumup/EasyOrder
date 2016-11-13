@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .content-wrap {
   background: #f3f3f3; }
 
@@ -71,3 +72,27 @@
   margin-top: 20px; }
   #regFrom .reg-btn {
     text-align: center; }
+
+/**---------------
+       菜单页面
+       v 0.0.1
+------------------**/
+.menu-info {
+  margin: 5rem;
+  background: #fff; }
+  .menu-info .input-field {
+    margin: 0 3rem;
+    padding: 2rem 0; }
+  .menu-info .text-tit {
+    height: 3rem;
+    margin-bottom: 2rem;
+    background: #ccc; }
+    .menu-info .text-tit span {
+      padding: 1rem;
+      line-height: 3rem;
+      color: #fff; }
+  .menu-info .sent-wrap {
+    text-align: center;
+    padding-bottom: 2rem; }
+    .menu-info .sent-wrap .send-btn {
+      margin-left: 1rem; }

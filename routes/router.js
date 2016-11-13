@@ -1,5 +1,6 @@
 var EasyOrder = require("../app/controllers/user/user"),
-        Admin = require("../app/controllers/admin/admin");
+        Admin = require("../app/controllers/admin/admin"),
+        menu  = require("../app/controllers/admin/menu");
 
 
 module.exports = function (app) {
@@ -17,8 +18,9 @@ module.exports = function (app) {
     app.post("/user/register",EasyOrder.signup);                      //注册接口
     app.get("/admin",EasyOrder.singinRequired,EasyOrder.adminRequired,Admin.index);                          //管理员页面
     app.route("/admin/user_list").get(EasyOrder.singinRequired,EasyOrder.adminRequired,EasyOrder.user_list)//用户列表页面
-                                      .delete(EasyOrder.del)                           //删除用户
-                                          .post();                                  //修改用户
+                                      .delete(EasyOrder.del)                                                //删除用户接口
+    app.get("/admin/menu",EasyOrder.singinRequired,EasyOrder.adminRequired,menu.index);
+
 
     // development error handler
 // will print stacktrace
