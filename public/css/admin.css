@@ -96,3 +96,11 @@
     padding-bottom: 2rem; }
     .menu-info .sent-wrap .send-btn {
       margin-left: 1rem; }
+
+.preview-float {
+  position: fixed;
+  top: 4rem;
+  left: 3rem;
+  width: 450px;
+  height: 600px;
+  background: #00b0ff; }

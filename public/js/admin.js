@@ -10,6 +10,9 @@ var admin_tools = {
         admin_tools.event_bind();
     },
 
+
+
+//admin添加用户
     df_submit:function () {
         var _user = $("#user").val();
         var _name = $("#name").val();
@@ -43,7 +46,7 @@ var admin_tools = {
     },
 
 
-
+  //创建dom
     createEl:function (data,id) {
         var _html = '<tr class="'+ id+'">';
             _html +=     '<td>'+ data.user+'</td>';
