@@ -21,15 +21,15 @@ html
                                     label(for="menu-text") 请在这里粘贴菜单,菜名之间用英文,分隔
                                     textarea#menu-text.materialize-textarea
                                 div.sent-wrap
-                                    button.preview-btn.btn 预览菜单
+                                    a(href="#modal1").preview-btn.btn 预览菜单
                                     button.send-btn.btn.blue.lighten-1 发送菜单
-    div.preview-float
-        ul
-            li 菜名1
-            li 菜名2
-            li 菜名3
+    div#modal1.modal
+        div.modal-content
+            table.striped.centered.menu-list
+                tbody
 
-
+        div.modal-footer
+            a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') 取消
 
 
 
