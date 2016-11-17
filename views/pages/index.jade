@@ -2,7 +2,6 @@ extends ../includes/layout
 block append head
     link(href='/css/index.css',rel='stylesheet')
 block content
-
     nav
         .nav-wrapper.white
             a.brand-logo.center(href='#!') #{title}
@@ -14,6 +13,17 @@ block content
                     a#login(href='/login') 登陆
                 li
                     a(href='/login') 注册
+    if user
+        div
+            ul
+                each item in menuList
+                    li #{item}
+    else
+        div
+            h1 请先登录
+
+
+
     div.login-wrap.z-depth-2
         div.login-close
             i.iconfont.icon-guanbi

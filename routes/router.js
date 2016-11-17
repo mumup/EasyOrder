@@ -1,4 +1,5 @@
 var EasyOrder = require("../app/controllers/user/user"),
+        Index  = require("../app/controllers/user/index"),
         Admin = require("../app/controllers/admin/admin"),
         menu  = require("../app/controllers/admin/menu");
 
@@ -12,7 +13,7 @@ module.exports = function (app) {
     });
 
     // 公共路由
-    app.get("/",EasyOrder.index);                      //首页首页
+    app.get("/",Index.index);                      //首页首页
     app.post("/user/login",EasyOrder.login);         //登录接口
     app.get("/logout",EasyOrder.logout);              //登出接口
     app.post("/user/register",EasyOrder.signup);                      //注册接口

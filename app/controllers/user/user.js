@@ -1,6 +1,7 @@
 var mongoose = require("mongoose"),
     User = mongoose.model("User");
 
+
 // 登录控制器
 exports.login = function (req,res) {
     var _name = req.body.user || "",
@@ -140,11 +141,4 @@ exports.adminRequired = function(req,res,next) {
         return res.send("你根本不是老司机");
     }
     next();
-};
-
-exports.index = function (req,res) {
-    res.render('index', {
-        title:'首页',
-        logo:'movie'
-    });
 };

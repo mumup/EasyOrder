@@ -39,9 +39,17 @@ $(function () {
             data:post_data,
             dataType:"json",
             type:'POST',
-            timeout:30000
+            timeout:30000,
+            success:function (data) {
+                if (data.status == 1){
+                    Materialize.toast(data.msg, 2000);
+                    $('.modal').modal("close");
+                    $("#menu-text").val("")
+                }else {
+                    Materialize.toast(data.msg, 2000)
+                }
+            }
         })
-
     });
 
 
