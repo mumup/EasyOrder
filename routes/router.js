@@ -18,8 +18,9 @@ module.exports = function (app) {
     app.post("/user/register",EasyOrder.signup);                      //注册接口
     app.get("/admin",EasyOrder.singinRequired,EasyOrder.adminRequired,Admin.index);                          //管理员页面
     app.route("/admin/user_list").get(EasyOrder.singinRequired,EasyOrder.adminRequired,EasyOrder.user_list)//用户列表页面
-                                      .delete(EasyOrder.del)                                                //删除用户接口
-    app.get("/admin/menu",EasyOrder.singinRequired,EasyOrder.adminRequired,menu.index);
+                                      .delete(EasyOrder.del);                                                //删除用户接口
+    app.get("/admin/menu",EasyOrder.singinRequired,EasyOrder.adminRequired,menu.index);                     //用户菜单接口
+    app.post("/admin/getMenuList",EasyOrder.singinRequired,EasyOrder.adminRequired,menu.sendMenu);            //发送菜单接口
 
 
     // development error handler

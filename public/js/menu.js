@@ -4,7 +4,7 @@ $(function () {
 
 
 
-
+    //预览按钮点击
     $(".preview-btn").on("click",function () {
 
         var menu_list = $(".menu-list tbody");
@@ -21,14 +21,33 @@ $(function () {
 
 
 
+    });
 
+    ////发送菜单点击
+    $(".send-btn").on("click",function () {
+        var MenuList = getMenuArr2();
+        console.log(MenuList);
+
+
+        var post_data = {
+            "menu":MenuList
+        };
+
+
+        $.ajax({
+            url:"/admin/getMenuList",
+            data:post_data,
+            dataType:"json",
+            type:'POST',
+            timeout:30000
+        })
 
     });
 
 
     //生成菜单列表
     function createMenu(el) {
-        var menu_arr = GetMenuArr();
+        var menu_arr = getMenuArr();
 
         el.html("");
 
@@ -41,16 +60,24 @@ $(function () {
     }
 
 
-    //序列化菜单数组
-    function GetMenuArr() {
-        var menu_text =  $("#menu-text").val();
-        return text2arr(menu_text);
-    }
 
 
     //获取菜单数组
     function getMenuArr() {
         return text2arr($("#menu-text").val())
+    }
+
+
+    //上传的数据
+    function postText(text) {
+        text = text.replace(/，/g,',');
+        text = text.replace(/\s+/g,'');
+        return text
+    }
+
+    //获取菜单数组
+    function getMenuArr2() {
+        return postText($("#menu-text").val())
     }
 
 
