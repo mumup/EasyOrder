@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var moment = require('moment');
 var MenuSchema = new mongoose.Schema({
 
     menu:{
@@ -33,9 +34,10 @@ MenuSchema.statics = {
             .findOne({_id: id})
             .exec(cb);
     },
-    findByMenuNum:function (num,cb) {
+
+    findByMenuNum:function (arg,cb) {
         return this
-            .find({})
+            .find(arg)
             .sort({'menu_num':-1})
             .limit(1)
             .exec(cb);

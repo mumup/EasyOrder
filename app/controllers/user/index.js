@@ -1,18 +1,20 @@
 var mongoose = require("mongoose"),
     User = mongoose.model("User"),
     Menu = mongoose.model("Menu");
+var moment = require('moment');
 
 
 exports.index = function (req,res) {
 
-    Menu.findByMenuNum({},function (err,MenuNum) {
+    Menu.findByMenuNum({"meta.createAt": {"$gt" : moment().format("YYYY-MM-DD")}},function (err,MenuNum) {
+
+
+
 
         res.render('index', {
             title:'首页',
-            menuList:MenuNum[0].menu
+            menuList:(MenuNum == "")?["暂无菜单"]:MenuNum[0].menu,
         })
     });
-
-
 
 };

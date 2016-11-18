@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
 Menu = mongoose.model("Menu");
+var moment = require('moment');
 
 exports.index = function (req,res) {
     res.render('admin/menu', {
@@ -18,6 +19,7 @@ exports.sendMenu = function (req,res) {
             console.log(err);
             return res.json({status:0,msg:"发生错误,请重试"});       // 发生错误
         }
+        console.log(MenuNum);
 
         var _menu = {
                 menu:menuList,
