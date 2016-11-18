@@ -11,9 +11,9 @@ exports.index = function (req,res) {
 
 
 
-        res.render('index', {
-            title:'首页',
-            menuList:(MenuNum == "")?["暂无菜单"]:MenuNum[0].menu,
+        res.render('index',{
+            title:'非常有趣',
+            menuList:(MenuNum == "")?["暂无菜单"]:MenuNum[0].menu
         })
     });
 

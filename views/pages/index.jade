@@ -3,25 +3,57 @@ block append head
     link(href='/css/index.css',rel='stylesheet')
 block content
     nav
-        .nav-wrapper.white
-            a.brand-logo.center(href='#!') #{title}
+        .nav-wrapper
+            a.brand-logo.center(href='#') #{title}
+            a(data-activates="mobile-nav").button-collapse
+                i.iconfont.icon-icon1
             ul.right.hide-on-med-and-down
-                li
-                  if user
-                    a#logout(href='/logout') 退出
-                   else
-                    a#login(href='/login') 登陆
-                li
-                    a(href='/login') 注册
+                if user && user.role > 50
+                    li
+                        a #{user.account}
+                    li
+                        a#logout(href='/logout') 退出
+                    li
+                        a(href='/admin') 管理后台
+                else
+                    if user
+                        li
+                            a #{user.account}
+                        li
+                            a(href="/logout")#logout 退出
+                    else
+                        li
+                            a(href="/login").login 登陆
+            ul#mobile-nav.side-nav
+                if user && user.role > 50
+                    li
+                        a #{user.account}
+                    li
+                        a#logout(href='/logout') 退出
+                    li
+                        a(href='/admin') 管理后台
+                else
+                    if user
+                        li
+                            a #{user.account}
+                        li
+                            a(href="/logout")#logout 退出
+                    else
+                        li
+                            a(href="/login")#login.login 登陆
     if user
-        div
-            ul
-                each item in menuList
-                    li #{item}
-    else
-        div
-            h1 请先登录
+        div.container.menu-wrap
+            div.row
+                div.col.s12.m8.offset-m2.l6.offset-l3.center
+                    div
+                        ul
+                            each item in menuList
+                                li.menu-li.card-panel.z-depth-1
+                                   a(href="#").menu-a #{item}
 
+    else
+        div.center
+            h1 无登录,不飙车
 
 
     div.login-wrap.z-depth-2
@@ -39,9 +71,9 @@ block content
                     div.input-field.col.s12
                         input#password.validate(name="password",type="password")
                         label(for="password") 密码
-                 div.row
-                     div.login-btn.col.s12
-                         button#login-sub.btn.waves-effect.waves-light(type = "submit") 一键开车
+                div.row
+                    div.login-btn.col.s12
+                        button#login-sub.btn.waves-effect.waves-light(type = "submit") 一键开车
     div.mask-wrap
 block append foot
     script(src="/js/base.js")

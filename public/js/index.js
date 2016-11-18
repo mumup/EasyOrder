@@ -12,6 +12,7 @@ var login_obj = {
         //预留位置放东西，前期只做简单的登录
 
 
+        $(".button-collapse").sideNav();
         login_obj.event_bind();
     },
     //普通登录
@@ -68,7 +69,7 @@ var login_obj = {
         });
 
         // 登录部分
-        $("#login").on("click",function (e) {
+        $(".login").on("click",function (e) {
             $(".mask-wrap").show();
             $(".login-wrap").show();
             e.preventDefault();
