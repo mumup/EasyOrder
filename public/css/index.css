@@ -1,17 +1,33 @@
 main {
   background: url("../images/geometry2.png"); }
 
+.accent-info {
+  position: relative;
+  color: #000; }
+
 nav .brand-logo {
   color: #000; }
 
 .menu-wrap {
-  margin-top: 5rem; }
+  margin-top: 3rem; }
   .menu-wrap .menu-li {
     padding: 1rem; }
   .menu-wrap .menu-a {
     display: inline-block;
     width: 100%;
     height: 100%; }
+
+.no-login {
+  position: fixed;
+  width: 10rem;
+  height: 4rem;
+  top: 50%;
+  margin-top: -2rem;
+  left: 50%;
+  margin-left: -5rem; }
+  .no-login .no-txt {
+    font-size: 30px;
+    line-height: 4rem; }
 
 footer.page-footer {
   margin-top: 0;

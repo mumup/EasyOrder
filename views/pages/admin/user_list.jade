@@ -2,7 +2,7 @@ doctype
 html
     head
         title #{title}
-        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
         include ../../includes/head
         link(href="/css/admin.css" rel="stylesheet")
     body.user_list
@@ -10,15 +10,14 @@ html
             block center
                 div.row.content-wrap
                     include ../../includes/tool-bar
-                    div.main-wrap.col.s11
-                        div.right-wrap
-                            div.nav-wrapper.white
-                                ul.right.hide-on-med-and-down
-                                    li
-                                      a(href="/")#add-user.iconfont.icon-tianjia.add-user
-                                    li
-                                      a(href="/")
-                        table.centered.highlight.container
+                    div.main-wrap.col.s10
+                        .fixed-action-btn.horizontal
+                            a.btn-floating.btn-large.red
+                                i(data-position="top" data-delay="50" data-tooltip="添加用户")#add-user.tooltipped.iconfont.icon-tianjia.add-user
+
+                        //div.top-tools.lighten-3.z-depth-1.center
+                        //    a(href="/")#add-user.iconfont.icon-tianjia.add-user
+                        table.centered.highlight
                             thead
                                 tr
                                     th 用户名

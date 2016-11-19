@@ -12,7 +12,7 @@ exports.index = function (req,res) {
 
 
         res.render('index',{
-            title:'非常有趣',
+            title:'点餐系统',
             menuList:(MenuNum == "")?["暂无菜单"]:MenuNum[0].menu
         })
     });

@@ -37,6 +37,9 @@
 .icon-user-guanli:before {
   content: "\e6df"; }
 
+.side-nav {
+  width: 200px; }
+
 body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -52,6 +55,10 @@ main {
   -ms-flex: 1 0 auto;
   flex: 1 0 auto; }
 
+.side-nav a {
+  font-size: 20px; }
+
 nav .button-collapse i {
   font-size: 1.7rem;
-  padding-left: .5rem; }
+  padding-left: .5rem;
+  color: #000; }

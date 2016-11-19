@@ -62,13 +62,6 @@ var admin_tools = {
     },
 
 
-    windowsHeight:function () {
-        return $(window).height();
-    },
-    DocHeight:function () {
-        return $(window).height();
-    },
-
 
     // 监听绑定
     event_bind:function () {
@@ -111,12 +104,6 @@ var admin_tools = {
 //             })
 //         });
 
-        //首页tools-bar高度
-        $(".tool-bar").height(admin_tools.windowsHeight);
-
-        $(window).resize(function () {
-            $(".tool-bar").height(admin_tools.windowsHeight)
-        })
 
 
     }

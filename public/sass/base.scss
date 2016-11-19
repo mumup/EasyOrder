@@ -32,7 +32,10 @@
 
 .icon-user-guanli:before { content: "\e6df"; }
 
-
+//侧滑菜单栏宽度
+.side-nav{
+  width: 200px;
+}
 
 body {
   display: flex;
@@ -45,6 +48,10 @@ main {
   flex: 1 0 auto;
 }
 
+.side-nav a{
+  font-size: 20px;
+}
+
 nav {
 
 
@@ -53,6 +60,7 @@ nav {
     & i{
       font-size: 1.7rem;
       padding-left: .5rem;
+      color: #000;
     }
 
   }

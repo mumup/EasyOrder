@@ -3,18 +3,18 @@ block append head
     link(href='/css/index.css',rel='stylesheet')
 block content
     nav
-        .nav-wrapper
+        .nav-wrapper.white
             a.brand-logo.center(href='#') #{title}
             a(data-activates="mobile-nav").button-collapse
                 i.iconfont.icon-icon1
             ul.right.hide-on-med-and-down
                 if user && user.role > 50
                     li
-                        a #{user.account}
+                        a.accent-info #{user.account}
                     li
-                        a#logout(href='/logout') 退出
+                        a#logout(href='/logout').accent-info 退出
                     li
-                        a(href='/admin') 管理后台
+                        a(href='/admin').accent-info 管理后台
                 else
                     if user
                         li
@@ -52,8 +52,10 @@ block content
                                    a(href="#").menu-a #{item}
 
     else
-        div.center
-            h1 无登录,不飙车
+        div.no-login.center.waves-effect.waves-light.btn.login.cyan.lighten-2
+            span.no-txt 登录
+
+
 
 
     div.login-wrap.z-depth-2

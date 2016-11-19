@@ -2,7 +2,7 @@ doctype
 html
     head
         title #{title}
-        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
         include ../../includes/head
         link(href="/css/admin.css" rel="stylesheet")
     body.user_list
@@ -10,9 +10,7 @@ html
             block center
                 div.row.content-wrap
                     include ../../includes/tool-bar
-                    div.main-wrap.col.s11
-                        nav
-                            div.nav-wrapper.white
+                    div.main-wrap.col.s10
                         div.menu-info.z-depth-1
                             div.text-content
                                 div.text-tit
