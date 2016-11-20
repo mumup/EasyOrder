@@ -1,7 +1,9 @@
 var EasyOrder = require("../app/controllers/user/user"),
         Index  = require("../app/controllers/user/index"),
         Admin = require("../app/controllers/admin/admin"),
-        menu  = require("../app/controllers/admin/menu");
+        Menu  = require("../app/controllers/admin/menu"),
+        Order  = require("../app/controllers/admin/order");
+
 
 
 module.exports = function (app) {
@@ -21,10 +23,14 @@ module.exports = function (app) {
     app.route("/admin/user_list").get(EasyOrder.singinRequired,EasyOrder.adminRequired,EasyOrder.user_list)//用户列表页面
                                       .delete(EasyOrder.del);                                                //删除用户接口
 
-    app.route("/admin/menu").get(EasyOrder.singinRequired,EasyOrder.adminRequired,menu.index)               //用户菜单接口
-                              .delete(menu.del);                                                             //删除菜单接口
+    app.route("/admin/menu").get(EasyOrder.singinRequired,EasyOrder.adminRequired,Menu.index)               //用户菜单接口
+                              .delete(Menu.del);                                                             //删除菜单接口
 
-    app.post("/admin/getMenuList",EasyOrder.singinRequired,EasyOrder.adminRequired,menu.sendMenu);            //发送菜单接口
+    app.post("/admin/getMenuList",EasyOrder.singinRequired,EasyOrder.adminRequired,Menu.sendMenu);            //发送菜单接口
+
+    app.route("/admin/order").get(EasyOrder.singinRequired,EasyOrder.adminRequired,Order.index);              //用户订单页面
+
+    app.post("/user/orders",EasyOrder.singinRequired,Order.order);                                           //首页下单接口
 
 
     // development error handler

@@ -50,35 +50,64 @@ var login_obj = {
                         alert("用户不存在")
                     }
                 }
-                // switch (status){
-                //     case 3:alert("登录成功");
-                //         break;
-                //     case 2:alert("没有这个用户");
-                //         break;
-                //     case 1:alert("密码错误")
-                // }
             }
         })
     },
 
+    order_submit:function () {
+        var _menu_num = $(".menu-wrap").attr("data-data-MenuNum");
+        var post_data = {
+            menu_num:_menu_num,
+            food:"小鸡炖蘑菇"
+        };
+
+        $.ajax({
+            url:"/user/orders",
+            data:post_data,
+            dataType:"json",
+            type:'POST',
+            timeout:30000,
+            success:function (data) {
+                var status = data["status"];
+                if (status == 3){
+                    location.href = "/";
+                }else {
+                    if (status == 1){
+                        alert("密码错误")
+                    }else {
+                        alert("用户不存在")
+                    }
+                }
+            }
+        })
+    },
+
+
     // 监听绑定
     event_bind:function () {
+        //登录提交
         $("#login-sub").on("click",function (e) {
             e.preventDefault();
             login_obj.default_submit();
         });
 
-        // 登录部分
+        // 登录框
         $(".login").on("click",function (e) {
             $(".mask-wrap").show();
             $(".login-wrap").show();
             e.preventDefault();
         });
 
+        //关闭登录框
         $(".login-close").on("click",function () {
                 $(".mask-wrap").hide();
                 $(".login-wrap").hide();
         });
+
+        //提交订单
+        $(".test").on("click",function () {
+            login_obj.order_submit();
+        })
 
     }
 

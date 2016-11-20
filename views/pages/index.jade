@@ -2,6 +2,8 @@ extends ../includes/layout
 block append head
     link(href='/css/index.css',rel='stylesheet')
 block content
+    div
+        button.btn.waves-effect.test 测试测试
     nav
         .nav-wrapper.white
             a.brand-logo.center(href='#') #{title}
@@ -42,7 +44,7 @@ block content
                         li
                             a(href="/login")#login.login 登陆
     if user
-        div.container.menu-wrap
+        div(data-MenuNum= menuNum).container.menu-wrap
             div.row
                 div.col.s12.m8.offset-m2.l6.offset-l3.center
                     div

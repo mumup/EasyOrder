@@ -12,10 +12,11 @@ exports.index = function (req,res) {
         console.log(moment().format("YYYY-MM-DD"));
 
 
+
         res.render('index',{
             title:'点餐系统',
-            menuList:(MenuNum == "")?["暂无菜单"]:MenuNum[0].menu
+            menuList:(MenuNum == "")?["暂无菜单"]:MenuNum[0].menu,
+            menuNum:(MenuNum == "")?["0"]:MenuNum[0].menu_num
         })
     });
-
 };

@@ -1,0 +1,18 @@
+doctype
+html
+    head
+        title #{title}
+        meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+        include ../../includes/head
+        link(href="/css/admin.css" rel="stylesheet")
+    body.user_list
+        main
+            block center
+                div.row.content-wrap
+                    include ../../includes/tool-bar
+                    div.main-wrap.col.s10
+
+
+
+include ../../includes/footjs
+    script(src="/js/admin.js")
