@@ -6,9 +6,10 @@ var moment = require('moment');
 
 exports.index = function (req,res) {
 
-    Menu.findByMenuNum({"meta.createAt": {"$gt" : moment().format("YYYY-MM-DD")}},function (err,MenuNum) {
+    Menu.findByMenuNum({"meta.createAt": {"$gt" : moment().format("YYYY-MM-DD")}},0,function (err,MenuNum) {
 
 
+        console.log(moment().format("YYYY-MM-DD"));
 
 
         res.render('index',{

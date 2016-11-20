@@ -35,11 +35,11 @@ MenuSchema.statics = {
             .exec(cb);
     },
 
-    findByMenuNum:function (arg,cb) {
+    findByMenuNum:function (arg,LimitNum,cb) {
         return this
             .find(arg)
             .sort({'menu_num':-1})
-            .limit(1)
+            .limit(LimitNum)
             .exec(cb);
     }
 };

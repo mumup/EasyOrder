@@ -52,6 +52,29 @@ $(function () {
         })
     });
 
+    //删除菜单
+    $(".menu-delete").on("click",function () {
+       var _this = $(this);
+       var _li   = _this.closest("li[data-MenuNum]");
+       var _menu_num = _li.attr("data-MenuNum");
+
+        $.ajax({
+            url:"/admin/menu?num=" + _menu_num,
+            type:'DELETE',
+            timeout:30000,
+            success:function (data) {
+                if (data.status == 1){
+                    Materialize.toast(data.msg, 2000);
+                    _li.hide(300,function () {
+                        _li.remove()
+                    })
+                }else {
+                    Materialize.toast(data.msg, 2000)
+                }
+            }
+        });
+    });
+
 
     //生成菜单列表
     function createMenu(el) {

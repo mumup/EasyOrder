@@ -19,6 +19,7 @@ var app = express();
 
 app.locals.moment = require('moment');// 引入moment模块并设置为app.locals属性,用来格式化时间
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views/pages'));
 app.set('view engine', 'jade');

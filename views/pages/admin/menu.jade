@@ -20,6 +20,18 @@ html
                                     textarea#menu-text.materialize-textarea
                                 div.sent-wrap
                                     a(href="#modal1").preview-btn.btn 预览菜单
+                        div.history-menu
+                            ul.collapsible.popout(data-collapsible='accordion')
+                                each item in menu
+                                    li(data-MenuNum= item.menu_num)
+                                        .collapsible-header.center
+                                            | #{moment(item.meta.createAt).format("YYYY-MM-DD HH:mm")}
+                                        .collapsible-body
+                                            p #{item.menu}
+                                        div.delete-btn
+                                            i.menu-delete.iconfont.icon-icon
+
+
     div#modal1.modal
         div.modal-content
             table.striped.centered.menu-list
