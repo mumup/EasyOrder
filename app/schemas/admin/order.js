@@ -8,21 +8,21 @@ var Schema = mongoose.Schema,
 var OrderSchema = new mongoose.Schema({
 
     //订单字段
-    order:{
+
         menu_num:{
-            type: ObjectId,
-            ref: 'Menu'
+            type: Number
         },
 
         orders:[
             {
-                account:String,
-                type: ObjectId,
-                ref: 'User',
+                account:{
+                    type:ObjectId,
+                    ref:"User"
+                },
                 DishName:String
             }
-        ]
-    },
+        ],
+
 
     meta:{
         createAt:{
