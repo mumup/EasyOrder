@@ -55,7 +55,7 @@ var login_obj = {
     },
 
     order_submit:function () {
-        var _menu_num = $(".menu-wrap").attr("data-data-MenuNum");
+        var _menu_num = $(".menu-wrap").attr("data-MenuNum");
         var post_data = {
             menu_num:_menu_num,
             food:"小鸡炖蘑菇"
@@ -73,9 +73,9 @@ var login_obj = {
                     location.href = "/";
                 }else {
                     if (status == 1){
-                        alert("密码错误")
+                        alert(data.msg)
                     }else {
-                        alert("用户不存在")
+                        alert(data.msg)
                     }
                 }
             }
