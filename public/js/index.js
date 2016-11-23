@@ -56,6 +56,7 @@ var login_obj = {
 
     order_submit:function () {
         var _menu_num = $(".menu-wrap").attr("data-MenuNum");
+        console.log(_menu_num)
         var post_data = {
             menu_num:_menu_num,
             food:"小鸡炖蘑菇"
