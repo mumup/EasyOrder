@@ -2,18 +2,27 @@ var mongoose = require('mongoose'),
     Order = mongoose.model("Order"),
     Menu = mongoose.model("Menu"),
     User = mongoose.model("User");
+var moment = require('moment');
 
 exports.index = function (req, res) {               //菜单主页
 
 
-    res.render('admin/order', {
-        title: '订单详细页'
+    Order.findOrder({"meta.createAt": {"$gt" : moment().format("YYYY-MM-DD")}},1,function (err,order) {
+
+        res.render('admin/order', {
+            title: '订单详细页',
+             orders:order[0].orders
+        });
     });
+
+
 
 };
 
+//首页发送订单接口
 exports.order = function (req, res) {
     var _account = req.session.user.account || "";
+    var _name    = req.session.user.name || "";
     var _menu_num = req.body.menu_num || "";
     var food = req.body.food || "";
 
@@ -23,7 +32,7 @@ exports.order = function (req, res) {
         }
         var _menu = {
             menu_num: _menu_num,
-            orders: {account: _account, DishName: food}
+            orders: {account: _account, DishName: food,name:_name}
         };
         Order.findOne({menu_num: _menu_num}, function (err, _Order) {
             if (_Order) {

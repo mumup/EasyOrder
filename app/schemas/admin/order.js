@@ -16,6 +16,7 @@ var OrderSchema = new mongoose.Schema({
         orders:[
             {
                  account:String,
+                     name:String,
                 DishName:String
             }
         ],
@@ -41,6 +42,13 @@ OrderSchema.statics = {
     findById: function(id,cb) {
         return this
             .findOne({_id: id})
+            .exec(cb);
+    },
+    findOrder:function (date,LimitNum,cb) {
+        return this
+            .find(date)
+            .sort({'menu_num':-1})
+            .limit(LimitNum)
             .exec(cb);
     }
 };

@@ -11,6 +11,20 @@ html
                 div.row.content-wrap
                     include ../../includes/tool-bar
                     div.main-wrap.col.s10
+                        div.order-wrap
+                            table.centered.striped.highlight
+                                thead
+                                    tr
+                                        th 用户名
+                                        th 姓名
+                                        th 菜名
+                                        th 点餐人
+                                tbody#info-content
+                                    each item in orders
+                                        tr(class="#{item._id}")
+                                            td #{item.account}
+                                            td #{item.name}
+                                            td #{item.DishName}
 
 
 

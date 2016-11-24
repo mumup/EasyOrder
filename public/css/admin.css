@@ -1,6 +1,5 @@
 @charset "UTF-8";
 .content-wrap {
-  background: #f3f3f3;
   margin-bottom: 0;
   position: absolute;
   height: 100%;
@@ -128,3 +127,6 @@
   width: 450px;
   height: 600px;
   background: #00b0ff; }
+
+.order-wrap {
+  margin: 0 2rem; }
