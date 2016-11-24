@@ -15,6 +15,12 @@ var login_obj = {
         $(".button-collapse").sideNav();
         login_obj.event_bind();
     },
+
+    //获取点击菜名
+    getFood:function () {
+      return  $(".food").val()
+    },
+
     //普通登录
     default_submit:function () {
         var username = $.trim($("#user").val());
@@ -56,22 +62,26 @@ var login_obj = {
 
     order_submit:function () {
         var _menu_num = $(".menu-wrap").attr("data-MenuNum");
-        console.log(_menu_num)
+        var _food     = login_obj.getFood();
+
+        if (_food == ""){Materialize.toast("请先选择菜单",2000);return false}
+
         var post_data = {
             menu_num:_menu_num,
-            food:"小鸡炖蘑菇"
+            food:_food
         };
 
         $.ajax({
             url:"/user/orders",
             data:post_data,
             dataType:"json",
+            async:true,
             type:'POST',
             timeout:30000,
             success:function (data) {
                 var status = data["status"];
                 if (status == 3){
-                    location.href = "/";
+                    alert(data.msg)
                 }else {
                     if (status == 1){
                         alert(data.msg)
@@ -108,6 +118,18 @@ var login_obj = {
         //提交订单
         $(".test").on("click",function () {
             login_obj.order_submit();
+        });
+        
+        //点击菜单赋值菜名
+        $(".menu-li").on("click",function () {
+            var _all_li = $(".menu-li");
+            var _this = $(this);
+            var _input= $(".food");
+            _input.val(_this.text());
+
+            _all_li.removeClass("active");
+            _this.addClass("active");
+
         })
 
     }

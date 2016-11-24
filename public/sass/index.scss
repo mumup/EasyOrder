@@ -15,8 +15,17 @@ nav .brand-logo{
 .menu-wrap{
   margin-top: 3rem;
 
+  & .active{
+    border: 2px #EF9A9A solid;
+  }
+
   & .menu-li{
     padding: 1rem;
+    transition: all ease .5s;
+
+    &:hover{
+      box-shadow: none;
+    }
   }
 
   & .menu-a{

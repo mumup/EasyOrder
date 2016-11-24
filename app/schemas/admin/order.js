@@ -15,10 +15,7 @@ var OrderSchema = new mongoose.Schema({
 
         orders:[
             {
-                account:{
-                    type:ObjectId,
-                    ref:"User"
-                },
+                 account:String,
                 DishName:String
             }
         ],

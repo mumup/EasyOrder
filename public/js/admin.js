@@ -126,9 +126,11 @@ function deleteEl(el) {
         timeout:30000,
         success:function (data) {
             var status = data["status"];
-            if (status = 1){
+            if (status == 1){
                 _dom.remove();
                 Materialize.toast('删除成功', 2000)
+            }else {
+                Materialize.toast(data.msg,2000)
             }
         }
     })

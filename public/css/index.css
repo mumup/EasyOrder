@@ -10,8 +10,14 @@ nav .brand-logo {
 
 .menu-wrap {
   margin-top: 3rem; }
+  .menu-wrap .active {
+    border: 2px #EF9A9A solid; }
   .menu-wrap .menu-li {
-    padding: 1rem; }
+    padding: 1rem;
+    -webkit-transition: all ease .5s;
+    transition: all ease .5s; }
+    .menu-wrap .menu-li:hover {
+      box-shadow: none; }
   .menu-wrap .menu-a {
     display: inline-block;
     width: 100%;

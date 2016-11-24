@@ -2,8 +2,6 @@ extends ../includes/layout
 block append head
     link(href='/css/index.css',rel='stylesheet')
 block content
-    div
-        button.btn.waves-effect.test 测试测试
     nav
         .nav-wrapper.white
             a.brand-logo.center(href='#') #{title}
@@ -20,12 +18,12 @@ block content
                 else
                     if user
                         li
-                            a #{user.account}
+                            a.accent-info #{user.account}
                         li
-                            a(href="/logout")#logout 退出
+                            a(href="/logout")#logout.accent-info 退出
                     else
                         li
-                            a(href="/login").login 登陆
+                            a(href="/login").login.accent-info 登陆
             ul#mobile-nav.side-nav
                 if user && user.role > 50
                     li
@@ -52,6 +50,9 @@ block content
                             each item in menuList
                                 li.menu-li.card-panel.z-depth-1
                                    a(href="#").menu-a #{item}
+                    if menuList != "暂无菜单"
+                        div.button.btn.waves-effect.red.lighten-3.test 下单
+                            input(class="food" type="hidden" value="")
 
     else
         div.no-login.center.waves-effect.waves-light.btn.login.cyan.lighten-2

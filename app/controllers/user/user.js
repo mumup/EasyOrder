@@ -94,15 +94,24 @@ exports.update = function (req,res) {
 exports.del = function(req,res) {
     // 获取客户端Ajax发送的URL值中的id值
     var id  = req.query.id;
-    if(id) {
-        // 如果id存在则服务器中将该条数据删除并返回删除成功的json数据
-        User.remove({_id:id},function(err) {
-            if(err){
-                console.log(err);
-            }
-            res.json({status:1});              // 删除成功
-        });
-    }
+
+    User.findOne({_id:id},function (err,user) {
+        if(user) {
+            //判断用户权限,超管不能删
+            console.log(user.role)
+            if(user.role>= 999){return res.json({status:0,msg:"不能删掉超管"})}
+
+
+            // 如果id存在则服务器中将该条数据删除并返回删除成功的json数据
+            User.remove({_id:id},function(err) {
+                if(err){
+                    console.log(err);
+                }
+                res.json({status:1,msg:"删除成功"});              // 删除成功
+            });
+        }
+    });
+
 };
 
 
