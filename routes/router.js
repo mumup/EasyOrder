@@ -33,17 +33,6 @@ module.exports = function (app) {
     app.post("/user/orders",EasyOrder.singinRequired,Order.order);                                           //首页下单接口
 
 
-    // development error handler
-// will print stacktrace
-    if (app.get('env') === 'development') {
-        app.use(function(err, req, res, next) {
-            res.status(err.status || 500);
-            res.render('error', {
-                message: err.message,
-                error: err
-            });
-        });
-    }
 
 // production error handler
 // no stacktraces leaked to user
@@ -53,14 +42,23 @@ module.exports = function (app) {
             message: err.message,
             error: {}
         });
+        next(err)
     });
 
-    // catch 404 and forward to error handler
-    app.use(function(req, res, next) {
-        var err = new Error('Not Found');
-        err.status = 404;
-        res.status(err.status || 404);
+    // // catch 404 and forward to error handler
+    // app.use(function(req, res, next) {
+    //     var err = new Error('Not Found');
+    //     err.status = 404;
+    //     res.status(err.status || 404);
+    //     res.render('404');
+    //     next(err);
+    // });
+
+    //404
+    app.use(function(req, res) {
+        // var err = new Error('Not Found');
+        // err.status = 404;
+        res.status(404);
         res.render('404');
-        next(err);
     });
 };

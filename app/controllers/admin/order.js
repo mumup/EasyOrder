@@ -11,7 +11,7 @@ exports.index = function (req, res) {               //菜单主页
 
         res.render('admin/order', {
             title: '订单详细页',
-             orders:order[0].orders
+             orders:(order != "")? order[0].orders:""
         });
     });
 

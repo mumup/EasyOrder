@@ -2,20 +2,23 @@ var mongoose = require('mongoose');
 var moment = require('moment');
 var MenuSchema = new mongoose.Schema({
 
-    menu:{
-        type:Array
+    menu: [
+        {
+            name: String,
+            num:Number
+        }
+    ],
+
+    menu_num: {
+        type: Number,
+        default: 1,
+        unique: true
     },
 
-    menu_num:{
-        type:Number,
-        default:1,
-        unique:true
-    },
-
-    meta:{
-        createAt:{
+    meta: {
+        createAt: {
             type: Date,
-            default:Date.now()
+            default: Date.now()
         }
     }
 });
@@ -23,22 +26,22 @@ var MenuSchema = new mongoose.Schema({
 
 // 定义查询静态方法
 MenuSchema.statics = {
-    fetch: function(cb) {
+    fetch: function (cb) {
         return this
             .find({})
             .sort('meta.updateAt')
             .exec(cb);
     },
-    findById: function(id,cb) {
+    findById: function (id, cb) {
         return this
             .findOne({_id: id})
             .exec(cb);
     },
 
-    findByMenuNum:function (arg,LimitNum,cb) {
+    findByMenuNum: function (arg, LimitNum, cb) {
         return this
             .find(arg)
-            .sort({'menu_num':-1})
+            .sort({'menu_num': -1})
             .limit(LimitNum)
             .exec(cb);
     }

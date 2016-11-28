@@ -99,11 +99,18 @@ $(function () {
     }
 
 
-    //上传的数据
+    // //上传的数据
     function postText(text) {
+        var _arry = [];
         text = text.replace(/，/g,',');
         text = text.replace(/\s+/g,'');
-        return text
+        text =  text.split(",");
+
+        for(var i = 0;i < text.length; i++){
+            _arry.push({name:text[i],num:[i + 1]})
+        }
+
+        return _arry
     }
 
     //获取菜单数组
