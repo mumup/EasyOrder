@@ -2,12 +2,9 @@ var mongoose = require('mongoose');
 var moment = require('moment');
 var MenuSchema = new mongoose.Schema({
 
-    menu: [
-        {
-            name: String,
-            num:Number
-        }
-    ],
+    menu: {
+        type: Array
+    },
 
     menu_num: {
         type: Number,

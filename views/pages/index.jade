@@ -47,12 +47,17 @@ block content
                 div.col.s12.m8.offset-m2.l6.offset-l3.center
                     div
                         ul
-                            each item in menuList
+                            if menuList != ""
+                                each item in menuList
+                                    li.menu-li.card-panel.z-depth-1
+                                        a(href="#",data-foodNum="#{item.num}").menu-a #{item.dishName}
+                            else
                                 li.menu-li.card-panel.z-depth-1
-                                   a(href="#").menu-a #{item}
-                    if menuList != "暂无菜单"
+                                    a(href="#").menu-a 暂无菜单
+                    if menuList.dishName != "暂无菜单"
                         div.button.btn.waves-effect.red.lighten-3.test 下单
                             input(class="food" type="hidden" value="")
+                            input(class="num" type="hidden" value="")
 
     else
         div.no-login.center.waves-effect.waves-light.btn.login.cyan.lighten-2

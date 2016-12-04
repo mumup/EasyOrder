@@ -63,12 +63,14 @@ var login_obj = {
     order_submit:function () {
         var _menu_num = $(".menu-wrap").attr("data-MenuNum");
         var _food     = login_obj.getFood();
+        var _num      = $(".num").val();
 
         if (_food == ""){Materialize.toast("请先选择菜单",2000);return false}
 
         var post_data = {
             menu_num:_menu_num,
-            food:_food
+            food:_food,
+            num:_num
         };
 
         $.ajax({
@@ -125,7 +127,9 @@ var login_obj = {
             var _all_li = $(".menu-li");
             var _this = $(this);
             var _input= $(".food");
+            var _input_num= $(".num");
             _input.val(_this.text());
+            _input_num.val(_this.find("a").data("foodnum"));
 
             _all_li.removeClass("active");
             _this.addClass("active");

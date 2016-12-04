@@ -15,16 +15,18 @@ html
                             table.centered.striped.highlight
                                 thead
                                     tr
+                                        th 编号
                                         th 用户名
                                         th 姓名
                                         th 菜名
-                                        th 点餐人
+                                        th 时间
                                 tbody#info-content
                                     each item in orders
                                         tr(class="#{item._id}")
                                             td #{item.account}
                                             td #{item.name}
                                             td #{item.DishName}
+                                            td #{moment(item.time).format("YYYY-MM-DD HH:MM")}
 
 
 

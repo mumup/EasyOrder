@@ -9,6 +9,7 @@ exports.index = function (req, res) {               //菜单主页
 
     Order.findOrder({"meta.createAt": {"$gt" : moment().format("YYYY-MM-DD")}},1,function (err,order) {
 
+        console.log(order);
         res.render('admin/order', {
             title: '订单详细页',
              orders:(order != "")? order[0].orders:""
@@ -25,6 +26,7 @@ exports.order = function (req, res) {
     var _name    = req.session.user.name || "";
     var _menu_num = req.body.menu_num || "";
     var food = req.body.food || "";
+    var num = req.body.num || "";
 
     Menu.findByMenuNum({}, 1, function (err, MenuNum) {                  //拿到最新菜单编号
         if (_menu_num != MenuNum[0].menu_num) {
@@ -32,7 +34,7 @@ exports.order = function (req, res) {
         }
         var _menu = {
             menu_num: _menu_num,
-            orders: {account: _account, DishName: food,name:_name}
+            orders: {account: _account, DishName: food,name:_name,num:num}
         };
         Order.findOne({menu_num: _menu_num}, function (err, _Order) {
             if (_Order) {

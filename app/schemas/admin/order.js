@@ -17,7 +17,9 @@ var OrderSchema = new mongoose.Schema({
             {
                  account:String,
                      name:String,
-                DishName:String
+                DishName:String,
+                num:Number,
+                time:{type:Date,default:Date.now}
             }
         ],
 

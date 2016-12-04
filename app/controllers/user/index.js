@@ -9,13 +9,20 @@ exports.index = function (req,res) {
     Menu.findByMenuNum({"meta.createAt": {"$gt" : moment().format("YYYY-MM-DD")}},0,function (err,MenuNum) {
 
 
-        console.log(moment().format("YYYY-MM-DD"));
+        var _menu     = [];
 
+        if(MenuNum != ""){
+            var _menuList = MenuNum[0].menu;
+            for(var i = 0;i < _menuList.length; i++){
+                _menu.push({num:i+1,dishName:_menuList[i]})
+            }
+        }
 
+        console.log(MenuNum)
 
         res.render('index',{
             title:'点餐系统',
-            menuList:(MenuNum == "")?["暂无菜单"]:MenuNum[0].menu,
+            menuList:_menu,
             menuNum:(MenuNum == "")?["0"]:MenuNum[0].menu_num
         })
     });
