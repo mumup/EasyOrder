@@ -29,6 +29,8 @@ module.exports = function (app) {
     app.post("/admin/getMenuList",EasyOrder.singinRequired,EasyOrder.adminRequired,Menu.sendMenu);            //发送菜单接口
 
     app.route("/admin/order").get(EasyOrder.singinRequired,EasyOrder.adminRequired,Order.index);              //用户订单页面
+    app.get("/admin/getOrderList",EasyOrder.singinRequired,EasyOrder.adminRequired,Order.getOrderList);       // 获取用户订单接口
+    app.get("/admin/outputWord",EasyOrder.singinRequired,EasyOrder.adminRequired,Order.outputWord);           //导出word表单
 
     app.post("/user/orders",EasyOrder.singinRequired,Order.order);                                           //首页下单接口
 
