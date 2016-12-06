@@ -59,7 +59,6 @@ exports.outputWord = function (req, res) {
 
         //内容行
 
-
         var _res = order[0].orders;
 
         _res.sort(function (a, b) {
@@ -69,7 +68,7 @@ exports.outputWord = function (req, res) {
 
         var pObj = docx.createP();
         for (var i = 0; i < _res.length; i++) {
-            pObj.addText((i+1) + _res[i].name + "      " +_res[i].DishName,{algin:"right"});
+            pObj.addText((i+1) + "  " + _res[i].name + "      " +_res[i].DishName);
             pObj.addLineBreak ();
         }
 

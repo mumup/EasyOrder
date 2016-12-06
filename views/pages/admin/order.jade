@@ -11,6 +11,9 @@ html
                 div.row.content-wrap
                     include ../../includes/tool-bar
                     div.main-wrap.col.s10
+                        .fixed-action-btn.horizontal
+                            a(href="/admin/outputWord").btn-floating.btn-large.blue
+                                i#add-user.iconfont.icon-daochu.add-user
                         div.order-wrap
                             table.centered.striped.highlight
                                 thead
@@ -31,4 +34,5 @@ html
                                             td #{moment(item.time).format("YYYY-MM-DD HH:mm")}
                                         - i ++
 include ../../includes/footjs
+    script(src="/js/order.js")
 
