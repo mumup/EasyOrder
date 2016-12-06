@@ -13,7 +13,7 @@ html
                     div.main-wrap.col.s10
                         .fixed-action-btn.horizontal
                             a.btn-floating.btn-large.red
-                                i(data-position="top" data-delay="50" data-tooltip="添加用户")#add-user.tooltipped.iconfont.icon-tianjia.add-user
+                                i#add-user.iconfont.icon-tianjia.add-user
 
                         //div.top-tools.lighten-3.z-depth-1.center
                         //    a(href="/")#add-user.iconfont.icon-tianjia.add-user
@@ -33,7 +33,7 @@ html
                                         td
                                             a.waves-effect.waves-light.btn 修改
                                             a(data-id="#{item._id}",onClick="deleteEl(this)").del-btn.waves-effect.waves-light.btn.red 删除
-            div(data-model="register").float-model.z-depth-2
+            div(data-model="register").float-model.z-depth-2.modal
                 div.res-tit
                     span 添加用户
                     span.close-btn.iconfont.icon-guanbi.right

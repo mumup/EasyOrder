@@ -1,30 +1,36 @@
 var mongoose = require('mongoose'),
+     moment = require('moment'),
     Order = mongoose.model("Order"),
     Menu = mongoose.model("Menu"),
-    User = mongoose.model("User");
-
-var officegen = require('officegen');
-var fs = require('fs');
-var path = require('path');
-var docx = officegen('docx');
-var async = require('async');
-
-var moment = require('moment');
+    User = mongoose.model("User"),
+    officegen = require('officegen'),
+    fs = require('fs'),
+    path = require('path'),
+    async = require('async');
 
 exports.index = function (req, res) {               //菜单主页
 
-    // Order.findOrder({"meta.createAt": {"$gt" : moment().format("YYYY-MM-DD")}},1,function (err,order) {
-    //
-    //     console.log(order);
-    //     res.render('admin/order', {
-    //         title: '订单详细页',
-    //          orders:(order != "")? order[0].orders:""
-    //     });
-    // });
+    Order.findOrder({"meta.createAt": {"$gt" : moment().format("YYYY-MM-DD")}},1,function (err,order) {
 
 
-    res.render('admin/order', {
-        title: '订单详细页'
+        Menu.findByMenuNum({}, 1, function (err, MenuNum) {                  //拿到最新菜单编号
+            if (order[0].menu_num != MenuNum[0].menu_num) {
+                res.render('admin/order', {
+                    title: '订单详细页',
+                    orders:""
+                });
+            }else {
+                var _res = order[0].orders;
+
+                _res.sort(function (a, b) {
+                    return a.num - b.num;
+                });
+                res.render('admin/order', {
+                    title: '订单详细页',
+                    orders:(order != "")? _res:""
+                });
+            }
+        });
     });
 };
 
@@ -32,51 +38,50 @@ exports.index = function (req, res) {               //菜单主页
 //生成word文档接口
 exports.outputWord = function (req, res) {
 
-    console.log('--------------exportWord-------------');
 
-    docx.on('error', function (err) {
-        console.log(err);
-    });
+    Order.findOrder({"meta.createAt": {"$gt": moment().format("YYYY-MM-DD")}}, 1, function (err, order) {
+        var docx = officegen('docx');
 
-    var pObj = docx.createP({align: 'center'});
+        console.log('---------------exportWord-------------');
 
-    pObj.addText('测试测试测试这是测试啊', {bold: true, font_face: 'Arial', font_size: 18});
+        docx.on('error', function (err) {
+            console.log(err);
+        });
 
-
-    var out = fs.createWriteStream('tmp/'+ Date.now() +'.docx');
-
-    out.on('error', function (err) {
-        console.log(err);
-    });
+        docx.on('finalize', function (written) {
+            console.log('Finish to create a PowerPoint file.\nTotal bytes created: ' + written + '\n');
+        });
 
 
-    async.parallel([
-        function (done) {
-            out.on('close', function () {
-                console.log('Finish to create a DOCX file.');
-                pObj = "";
-                done(null);
-            });
-            docx.generate(out);
+        var pObj = docx.createP({align: 'center'});// 创建行 设置居中
+        pObj.addText('订餐列表', {bold: true, font_face: 'Arial', font_size: 18});// 添加文字 设置字体样式 加粗 大小
+        pObj.addText("2016-12-6");
+
+        //内容行
+
+
+        var _res = order[0].orders;
+
+        _res.sort(function (a, b) {
+            return a.num - b.num;
+        });
+
+
+        var pObj = docx.createP();
+        for (var i = 0; i < _res.length; i++) {
+            pObj.addText((i+1) + _res[i].name + "      " +_res[i].DishName,{algin:"right"});
+            pObj.addLineBreak ();
         }
 
-    ], function (err) {
-        if (err) {
-            console.log('error: ' + err);
-        } // Endif.
+
+        res.set('Content-Type', 'application/vnd.openxmlformats-officedocument.presentationml.presentation');   //这个不知道是什么鬼
+        res.set('Content-disposition', 'attachment; filename=surprise.docx');                                    //导出的文件名
+
+        docx.generate(res);      // 客户端导出word
+
 
     });
 
-
-    // 设置 header 使浏览器下载文件
-    res.setHeader('Content-Description', 'File Transfer');
-    res.setHeader('Content-Type', 'application/docx; charset=utf-8');
-    res.setHeader('Content-Disposition', 'attachment; filename=data.docx');
-    res.setHeader('Expires', '0');
-    res.setHeader('Cache-Control', 'must-revalidate');
-
-    // 为了让 Windows 能识别 utf-8，加上了 dom
-    docx.generate (res)
 
 };
 
@@ -87,14 +92,18 @@ exports.getOrderList = function (req, res) {
         if (err) {
             console.log(err)
         }
+        Menu.findByMenuNum({}, 1, function (err, MenuNum) {                  //拿到最新菜单编号
+            if (order[0].menu_num != MenuNum[0].menu_num) {
+                return res.json({status: 0, msg: "暂无订单"});      //如果不匹配
+            }else {
+                var _res = order[0].orders;
 
-        var _res = order[0].orders;
-
-        _res.sort(function (a, b) {
-            return a.num - b.num;
+                _res.sort(function (a, b) {
+                    return a.num - b.num;
+                });
+                res.json(_res)
+            }
         });
-
-        res.json(_res)
     });
 };
 
@@ -109,7 +118,7 @@ exports.order = function (req, res) {
 
     Menu.findByMenuNum({}, 1, function (err, MenuNum) {                  //拿到最新菜单编号
         if (_menu_num != MenuNum[0].menu_num) {
-            return res.json({status: 2, msg: "订餐失败,请刷新页面获取最新的菜单"})      //如果不匹配
+            return res.json({status: 2, msg: "订餐失败,请刷新页面获取最新的菜单"});      //如果不匹配
         }
         var _menu = {
             menu_num: _menu_num,

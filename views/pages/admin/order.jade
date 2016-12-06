@@ -21,11 +21,14 @@ html
                                         th 菜名
                                         th 时间
                                 tbody#info-content
-                                    //each item in orders
-                                    //    tr(class="#{item._id}")
-                                    //        td #{item.account}
-                                    //        td #{item.name}
-                                    //        td #{item.DishName}
-                                    //        td #{moment(item.time).format("YYYY-MM-DD HH:MM")}
+                                    - var i = 1
+                                    each item in orders
+                                        tr(class="#{item._id}")
+                                            td #{i}
+                                            td #{item.account}
+                                            td #{item.name}
+                                            td #{item.DishName}
+                                            td #{moment(item.time).format("YYYY-MM-DD HH:mm")}
+                                        - i ++
 include ../../includes/footjs
-    script(src="/js/order.js")
+

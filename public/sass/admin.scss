@@ -77,12 +77,9 @@
   display: none;
   position: fixed;
   border-radius: 6px;
-  top: 50%;
-  left: 50%;
-  margin-top: -200px;
-  margin-left: -200px;
-  width: 400px;
-  height: 400px;
+  top: 10%;
+  left: 0;
+  overflow: hidden;
   z-index: 99999;
   background: #fff;
 
