@@ -52,6 +52,11 @@ OrderSchema.statics = {
             .sort({'menu_num':-1})
             .limit(LimitNum)
             .exec(cb);
+    },
+    findLastOrder:function (menu_num,account,cb) {
+        return this
+            .find({"menu_num":menu_num},{"orders":{"$elemMatch":{"account":account}}})
+            .exec(cb);
     }
 
     

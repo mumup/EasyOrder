@@ -48,6 +48,8 @@ block content
                     div
                         ul
                             if menuList != ""
+                                if orders
+                                    h1 #{orders._order}
                                 each item in menuList
                                     li.menu-li.card-panel.z-depth-1
                                         a(href="#",data-foodNum="#{item.num}").menu-a #{item.dishName}
