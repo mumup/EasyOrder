@@ -12,25 +12,34 @@ exports.index = function (req, res) {               //菜单主页
 
     Order.findOrder({"meta.createAt": {"$gt": moment().format("YYYY-MM-DD")}}, 1, function (err, order) {
 
+        console.log(order);
+        if (order != ""){
+            Menu.findByMenuNum({}, 1, function (err, MenuNum) {                  //拿到最新菜单编号
+                if (order[0].menu_num != MenuNum[0].menu_num) {
+                    res.render('admin/order', {
+                        title: '订单详细页',
+                        orders: ""
+                    });
+                } else {
+                    var _res = order[0].orders;
 
-        Menu.findByMenuNum({}, 1, function (err, MenuNum) {                  //拿到最新菜单编号
-            if (order[0].menu_num != MenuNum[0].menu_num) {
-                res.render('admin/order', {
-                    title: '订单详细页',
-                    orders: ""
-                });
-            } else {
-                var _res = order[0].orders;
+                    _res.sort(function (a, b) {
+                        return a.num - b.num;
+                    });
+                    res.render('admin/order', {
+                        title: '订单详细页',
+                        orders: _res
+                    });
+                }
+            });
+        }else {
+            res.render('admin/order', {
+                title: '订单详细页',
+                orders: ""
+            });
+        }
 
-                _res.sort(function (a, b) {
-                    return a.num - b.num;
-                });
-                res.render('admin/order', {
-                    title: '订单详细页',
-                    orders: (order != "") ? _res : ""
-                });
-            }
-        });
+
     });
 };
 
