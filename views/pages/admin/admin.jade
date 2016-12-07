@@ -11,14 +11,20 @@ html
                 div.row.content-wrap
                     include ../../includes/tool-bar
                     div.main-wrap.col.s10
-                        div.admin-info.row
-                            a.col.s12.m5 111
-                            a.col.s12.m5 111
-                            a.col.s12.m5 111
-                            a.col.s12.m5 111
-
-
-
+                        div.admin-info.container
+                            div.collection
+                                a.collection-item(href='#!')
+                                    span.badge 3
+                                    | 当前用户数
+                                a.collection-item(href='#!')
+                                    span.new.badge 1
+                                    | 最新菜单号
+                                a.collection-item(href='#!')
+                                    span.new.badge 1
+                                    | 最新订单数
+                                a.collection-item(href='#!')
+                                    span.badge 2分钟
+                                    | 系统运行时间
 
 include ../../includes/footjs
     script(src="/js/admin.js")

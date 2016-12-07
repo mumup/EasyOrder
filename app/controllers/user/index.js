@@ -18,8 +18,6 @@ exports.index = function (req,res) {
             }
         }
 
-        console.log(MenuNum)
-
         res.render('index',{
             title:'点餐系统',
             menuList:_menu,

@@ -98,7 +98,6 @@ exports.del = function(req,res) {
     User.findOne({_id:id},function (err,user) {
         if(user) {
             //判断用户权限,超管不能删
-            console.log(user.role)
             if(user.role>= 999){return res.json({status:0,msg:"不能删掉超管"})}
 
 

@@ -49,7 +49,6 @@ exports.sendMenu = function (req,res) {
             console.log(err);
             return res.json({status:0,msg:"发生错误,请重试"});       // 发生错误
         }
-        console.log(MenuNum);
 
         var _menu = {
                 menu:menuList,

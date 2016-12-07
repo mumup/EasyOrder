@@ -11,7 +11,8 @@ nav .brand-logo {
 .menu-wrap {
   margin-top: 3rem; }
   .menu-wrap .active {
-    border: 2px #b2ebf2 solid; }
+    border-left: 6px solid #d52f3f;
+    border-right: 6px solid #d52f3f; }
   .menu-wrap .menu-li {
     padding: 1rem;
     -webkit-transition: all ease .5s;

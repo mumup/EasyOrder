@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-     moment = require('moment'),
+    moment = require('moment'),
     Order = mongoose.model("Order"),
     Menu = mongoose.model("Menu"),
     User = mongoose.model("User"),
@@ -10,16 +10,16 @@ var mongoose = require('mongoose'),
 
 exports.index = function (req, res) {               //菜单主页
 
-    Order.findOrder({"meta.createAt": {"$gt" : moment().format("YYYY-MM-DD")}},1,function (err,order) {
+    Order.findOrder({"meta.createAt": {"$gt": moment().format("YYYY-MM-DD")}}, 1, function (err, order) {
 
 
         Menu.findByMenuNum({}, 1, function (err, MenuNum) {                  //拿到最新菜单编号
             if (order[0].menu_num != MenuNum[0].menu_num) {
                 res.render('admin/order', {
                     title: '订单详细页',
-                    orders:""
+                    orders: ""
                 });
-            }else {
+            } else {
                 var _res = order[0].orders;
 
                 _res.sort(function (a, b) {
@@ -27,13 +27,61 @@ exports.index = function (req, res) {               //菜单主页
                 });
                 res.render('admin/order', {
                     title: '订单详细页',
-                    orders:(order != "")? _res:""
+                    orders: (order != "") ? _res : ""
                 });
             }
         });
     });
 };
 
+//生成Excel文档接口
+exports.outputExcel = function (req, res) {
+
+
+    Order.findOrder({"meta.createAt": {"$gt": moment().format("YYYY-MM-DD")}}, 1, function (err, order) {
+        var xlsx = officegen('xlsx');
+
+        xlsx.on('finalize', function (written) {
+            console.log('Finish to create an Excel file.\nTotal bytes created: ' + written + '\n');
+        });
+
+        xlsx.on('error', function (err) {
+            console.log(err);
+        });
+
+        sheet = xlsx.makeNewSheet();
+        sheet.name = moment(Date.now()).format("MM.DD");
+
+// The direct option - two-dimensional array:
+        sheet.data[0] = [];
+        sheet.data[0][0] = '编号';
+        sheet.data[0][1] = '姓名';
+        sheet.data[0][2] = '菜名';
+
+        var _res = order[0].orders;
+
+        _res.sort(function (a, b) {
+            return a.num - b.num;
+        });
+
+
+        for (var i = 0, row = 1; i < _res.length; i++, row++) {
+            sheet.data[row] = [];
+            sheet.data[row][0] = _res[i].num;
+            sheet.data[row][1] = _res[i].name;
+            sheet.data[row][2] = _res[i].DishName;
+        }
+
+        res.set('Content-Type', 'application/vnd.openxmlformats-officedocument.presentationml.presentation');   //这个不知道是什么鬼
+        res.set('Content-disposition', 'attachment; filename=' + moment(Date.now()).format("MM-DD-HHmm") + '.xlsx');                                    //导出的文件名
+
+        xlsx.generate(res);      // 客户端导出word
+
+
+    });
+
+
+};
 
 //生成word文档接口
 exports.outputWord = function (req, res) {
@@ -68,8 +116,8 @@ exports.outputWord = function (req, res) {
 
         var pObj = docx.createP();
         for (var i = 0; i < _res.length; i++) {
-            pObj.addText((i+1) + "  " + _res[i].name + "      " +_res[i].DishName);
-            pObj.addLineBreak ();
+            pObj.addText((i + 1) + "  " + _res[i].name + "      " + _res[i].DishName);
+            pObj.addLineBreak();
         }
 
 
@@ -94,7 +142,7 @@ exports.getOrderList = function (req, res) {
         Menu.findByMenuNum({}, 1, function (err, MenuNum) {                  //拿到最新菜单编号
             if (order[0].menu_num != MenuNum[0].menu_num) {
                 return res.json({status: 0, msg: "暂无订单"});      //如果不匹配
-            }else {
+            } else {
                 var _res = order[0].orders;
 
                 _res.sort(function (a, b) {

@@ -34,7 +34,6 @@ var admin_tools = {
             data:post_data,
             success:function (data) {
                 var status = data["status"];
-                console.log(status)
                 if (status == 2){
                     Materialize.toast('添加成功', 2000)
                     apEl.append(admin_tools.createEl(post_data,data.id))
@@ -118,7 +117,6 @@ function deleteEl(el) {
     var _this = $(el);
     var _id = _this.attr("data-id");
     var _dom = $("." + _id);
-    console.log(_id)
 
     $.ajax({
         url:"/admin/user_list?id=" + _id,

@@ -10,7 +10,6 @@ $(function () {
         var menu_list = $(".menu-list tbody");
         var menu_text =  $("#menu-text").val();
 
-        console.log(menu_list.length);
         if (menu_text == ""){
             Materialize.toast('请先输入菜单', 2000);
             return false;
@@ -26,7 +25,6 @@ $(function () {
     ////发送菜单点击
     $(".send-btn").on("click",function () {
         var MenuList = getMenuArr2();
-        console.log(MenuList);
 
 
         var post_data = {
@@ -82,12 +80,10 @@ $(function () {
 
         el.html("");
 
-        console.log(el.length);
 
         for (var i = 0;i < menu_arr.length;i++){
             el.append("<tr><td>"+ menu_arr[i] +"</td></tr>")
         }
-        console.log(menu_arr);
     }
 
 
@@ -110,7 +106,6 @@ $(function () {
         //     _arry.push({name:text[i],num:[i + 1]})
         // }
 
-        console.log(text)
         return text
     }
 
