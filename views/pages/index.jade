@@ -45,18 +45,28 @@ block content
         div(data-MenuNum= menuNum).container.menu-wrap
             div.row
                 div.col.s12.m8.offset-m2.l6.offset-l3.center
-                    div
-                        ul
-                            if menuList != ""
-                                if orders
-                                    h1 #{orders._order}
-                                each item in menuList
+                    if orders
+                        div
+                            h3 你已经选择了#{orders._order}
+                            div 你还可以选择
+                                div.edit-btn
+                                    .input-field.col.s12
+                                        select
+                                            option(value='', disabled='', selected='') 更改订单
+                                            each item in menuList
+                                                option(value='#{item.num}') #{item.dishName}
+                                    span.btn 取消订餐
+                    else
+                        div
+                            ul
+                                if menuList != ""
+                                    each item in menuList
+                                        li.menu-li.card-panel.z-depth-1
+                                            a(href="#",data-foodNum="#{item.num}").menu-a #{item.dishName}
+                                else
                                     li.menu-li.card-panel.z-depth-1
-                                        a(href="#",data-foodNum="#{item.num}").menu-a #{item.dishName}
-                            else
-                                li.menu-li.card-panel.z-depth-1
-                                    a(href="#").menu-a 暂无菜单
-                    if menuList != ""
+                                        a(href="#").menu-a 暂无菜单
+                    if menuList != "" && orders == ""
                         div.button.btn.waves-effect.red.lighten-3.test 下单
                             input(class="food" type="hidden" value="")
                             input(class="num" type="hidden" value="")

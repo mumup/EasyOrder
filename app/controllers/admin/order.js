@@ -48,6 +48,7 @@ exports.outputExcel = function (req, res) {
 
 
     Order.findOrder({"meta.createAt": {"$gt": moment().format("YYYY-MM-DD")}}, 1, function (err, order) {
+        if (order == ""){return res.redirect("/admin/order")}     //如果为空直接重定向
         var xlsx = officegen('xlsx');
 
         xlsx.on('finalize', function (written) {

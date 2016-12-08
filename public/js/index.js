@@ -12,6 +12,7 @@ var login_obj = {
         //预留位置放东西，前期只做简单的登录
 
 
+        $('select').material_select();
         $(".button-collapse").sideNav();
         login_obj.event_bind();
     },
@@ -131,8 +132,8 @@ var login_obj = {
             _input.val(_this.text());
             _input_num.val(_this.find("a").data("foodnum"));
 
-            _all_li.removeClass("active");
-            _this.addClass("active");
+            _all_li.removeClass("pick");
+            _this.addClass("pick");
 
         })
 

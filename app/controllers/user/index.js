@@ -21,32 +21,39 @@ exports.index = function (req, res) {
                 for (var i = 0; i < _menuList.length; i++) {
                     _menu.push({num: i + 1, dishName: _menuList[i]})
                 }
-            }
 
-            Order.findLastOrder(MenuNum[0].menu_num, _user, function (err, LastOrder) {
+                Order.findLastOrder(MenuNum[0].menu_num, _user, function (err, LastOrder) {
 
 
-                console.log(LastOrder)
-                console.log(MenuNum[0].menu_num)
-                // console.log(LastOrder[0].DishName)
+                    console.log(LastOrder)
+                    console.log(MenuNum[0].menu_num)
+                    // console.log(LastOrder[0].DishName)
 
-                var order;
-                if (LastOrder == ""){
-                    order = "";
-                }else {
-                    order = {
-                        "_order":LastOrder[0].DishName,
-                        "_id": LastOrder[0]._id
+                    var order;
+                    if (LastOrder == ""){
+                        order = "";
+                    }else {
+                        order = {
+                            "_order":LastOrder[0].orders[0].DishName,
+                            "_id": LastOrder[0]._id
+                        }
+                        console.log(order)
                     }
-                }
 
+                    res.render('index', {
+                        title: '点餐系统',
+                        menuList: _menu,
+                        menuNum: (MenuNum == "") ? ["0"] : MenuNum[0].menu_num,
+                        orders: order
+                    })
+                });
+
+            }else {
                 res.render('index', {
                     title: '点餐系统',
-                    menuList: _menu,
-                    menuNum: (MenuNum == "") ? ["0"] : MenuNum[0].menu_num,
-                    orders: order
+                    menuList:""
                 })
-            });
+            }
         });
 
 
