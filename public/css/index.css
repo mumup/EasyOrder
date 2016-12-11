@@ -10,6 +10,11 @@ nav .brand-logo {
 
 .menu-wrap {
   margin-top: 3rem; }
+  .menu-wrap .choose {
+    font-size: 22px; }
+    .menu-wrap .choose i {
+      font-style: normal;
+      color: #2196F3; }
   .menu-wrap .pick {
     border-left: 6px solid #d52f3f;
     border-right: 6px solid #d52f3f; }

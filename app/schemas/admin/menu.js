@@ -15,7 +15,7 @@ var MenuSchema = new mongoose.Schema({
     meta: {
         createAt: {
             type: Date,
-            default: Date.now()
+            default: Date.now
         }
     }
 });

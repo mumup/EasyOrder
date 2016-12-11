@@ -13,6 +13,11 @@ var OrderSchema = new mongoose.Schema({
             type: Number
         },
 
+        status:{
+            type:Number,
+            default:0
+        },
+
         orders:[
             {
                  account:String,
@@ -57,6 +62,11 @@ OrderSchema.statics = {
         return this
             .find({"menu_num":menu_num},{"orders":{"$elemMatch":{"account":account}}})
             .exec(cb);
+    },
+    updateOrder:function (data,cb){
+        return this
+            .update(data)
+            .exec(cb)
     }
 
     

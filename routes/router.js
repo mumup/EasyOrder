@@ -35,6 +35,7 @@ module.exports = function (app) {
     app.get("/admin/outputExcel",EasyOrder.singinRequired,EasyOrder.adminRequired,Order.outputExcel);           //导出Excel表单
 
     app.post("/user/orders",EasyOrder.singinRequired,Order.order);                                           //首页下单接口
+    app.get("/user/EditOrders",Order.EditOrder);
 
 
 

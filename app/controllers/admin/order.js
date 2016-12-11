@@ -186,7 +186,7 @@ exports.order = function (req, res) {
 
                 for (var i = 0; i < _Order.orders.length; i++) {                   //遍历订单数组
                     if (_Order.orders[i].account == _account) {
-                        return res.json({status: 3, msg: "你订过餐啦"});
+                        return res.json({status: 1, msg: "你订过餐啦"});
                     }
                 }
 
@@ -195,7 +195,7 @@ exports.order = function (req, res) {
                         console.log(err)
                     }
                 });
-                res.json({status: 4, msg: "订餐成功"});
+                res.json({status: 0, msg: "订餐成功"});
 
             } else {
                 var order;
@@ -208,7 +208,14 @@ exports.order = function (req, res) {
                 });
             }
         });
-    })
-
-
+    });
 };
+
+//首页订单操作
+exports.EditOrder = function (req,res) {
+    Order.updateOrder({"menu_num":6},{ "orders.account": "admin"}, { $set: { "orders.$.account" : "tank" } },function (err,status) {
+        if (err){console.log(err)}
+        console.log(status);
+        console.log("1")
+    })
+}

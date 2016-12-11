@@ -82,15 +82,10 @@ var login_obj = {
             type:'POST',
             timeout:30000,
             success:function (data) {
-                var status = data["status"];
-                if (status == 3){
-                    alert(data.msg)
+                if(data.status == 0){
+                    window.location.href = "/";
                 }else {
-                    if (status == 1){
-                        alert(data.msg)
-                    }else {
-                        alert(data.msg)
-                    }
+                    Materialize.toast(data.msg,2000);
                 }
             }
         })

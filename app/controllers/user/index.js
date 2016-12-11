@@ -10,9 +10,9 @@ exports.index = function (req, res) {
     if (req.session.user) {            //判断是否登录
         var _user = req.session.user.account;
 
-        Menu.findByMenuNum({"meta.createAt": {"$gt": moment().format("YYYY-MM-DD")}}, 0, function (err, MenuNum) {
+        Menu.findByMenuNum({"meta.createAt": {"$gt":new Date(moment(Date.now()).format("YYYY-MM-DD"))}}, 1, function (err, MenuNum) {
 
-            console.log(MenuNum)
+            if (err){console.log(err)}
 
             var _menu = [];
 

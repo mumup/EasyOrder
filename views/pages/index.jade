@@ -21,9 +21,6 @@ block content
                             a.accent-info #{user.account}
                         li
                             a(href="/logout")#logout.accent-info 退出
-                    else
-                        li
-                            a(href="/login").login.accent-info 登陆
             ul#mobile-nav.side-nav
                 if user && user.role > 50
                     li
@@ -46,8 +43,9 @@ block content
             div.row
                 div.col.s12.m8.offset-m2.l6.offset-l3.center
                     if orders
-                        div
-                            h3 你已经选择了#{orders._order}
+                        div.card-panel
+                            span.choose 你已经选择了
+                              i #{orders._order}
                             div 你还可以选择
                                 div.edit-btn
                                     .input-field.col.s12
