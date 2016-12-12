@@ -2,10 +2,12 @@ main{
   background: url("../images/geometry2.png");
 }
 
+//选项居中
+.select-wrapper input.select-dropdown{text-align: center;}
+
 .accent-info{
   position: relative;
   color: #000;
-
 }
 
 nav .brand-logo{
@@ -15,6 +17,12 @@ nav .brand-logo{
 .menu-wrap{
   margin-top: 3rem;
 
+  & .btn-item{
+
+    & span{
+      margin-left: 10px;
+    }
+  }
 
   & .choose{
     font-size: 22px;

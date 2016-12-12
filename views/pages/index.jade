@@ -53,7 +53,9 @@ block content
                                             option(value='', disabled='', selected='') 更改订单
                                             each item in menuList
                                                 option(value='#{item.num}') #{item.dishName}
-                                    span.btn 取消订餐
+                                    div.btn-item
+                                        span.changeOrder.btn 确定更改
+                                        span.cancelOrder.btn.red.darken-1 取消订餐
                     else
                         div
                             ul
