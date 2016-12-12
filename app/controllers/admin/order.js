@@ -213,9 +213,13 @@ exports.order = function (req, res) {
 
 //首页订单操作
 exports.EditOrder = function (req,res) {
-    Order.updateOrder({"menu_num":6},{ "orders.account": "admin"}, { $set: { "orders.$.account" : "tank" } },function (err,status) {
+    var _account = req.session.user.account || "";
+    var _menu_num = req.body.menu_num || "";
+    var food = req.body.food || "";
+    var num = req.body.num || "";
+
+    Order.updateOrder(_menu_num,num,_account,food,function (err,status) {
         if (err){console.log(err)}
-        console.log(status);
-        console.log("1")
+        console.log(status)
     })
 }
