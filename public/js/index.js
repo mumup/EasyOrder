@@ -130,6 +130,30 @@ var login_obj = {
             _all_li.removeClass("pick");
             _this.addClass("pick");
 
+        });
+        //修改订单
+        $(".changeOrder").on("click",function () {
+            var _chose = $(".select-dropdown").val();
+            if (_chose == "更改订单"){ Materialize.toast("请先选择菜单",2000);return false;}
+
+            var opt = {
+                 menu_num :$(".choose").attr("data-MenuNum"),
+                 food :_chose,
+                 num :$(".initialized").val()
+            };
+
+            $.ajax({
+                url:"/user/EditOrders",
+                data:opt,
+                dataType:"json",
+                async:true,
+                type:'POST',
+                timeout:30000,
+                success:function (data) {
+                    Materialize.toast(data.msg,2000);
+                }
+            })
+
         })
 
 
@@ -137,3 +161,4 @@ var login_obj = {
 
 
 };
+

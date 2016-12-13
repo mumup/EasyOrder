@@ -44,7 +44,7 @@ block content
                 div.col.s12.m8.offset-m2.l6.offset-l3.center
                     if orders
                         div.card-panel
-                            span.choose 你已经选择了
+                            span(data-MenuNum=menuNum).choose 你已经选择了
                               i #{orders._order}
                             div 你还可以选择
                                 div.edit-btn
