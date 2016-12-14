@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-Menu = mongoose.model("Menu");
+Menu = mongoose.model("Menu"),
+Order = mongoose.model("Order");
 // var moment = require('moment');
 
 exports.index = function (req,res) {               //菜单主页
@@ -52,17 +53,29 @@ exports.sendMenu = function (req,res) {
 
         var _menu = {
                 menu:menuList,
-                menu_num:(MenuNum != "")? MenuNum[0].menu_num + 1:1
-            },
+                menu_num:(MenuNum != "")? MenuNum[0].menu_num + 1:1       //创建菜单时将订单一起初始化
+            };
+        var _order = {
+            menu_num:_menu.menu_num,
+             orders : []
+        };
+            console.log(_order);
 
+           var order = new Order(_order),
             menu = new Menu(_menu);
 
         menu.save(function(err) {
             if(err){
                 console.log(err);
+                return false;
             }
-            return res.json({status:1,msg:"发送成功"});       // 发送成功
         });
-
+        order.save(function (err) {
+            if (err){
+                console.log(err);
+                return false;
+            }
+        });
+        return res.json({status:1,msg:"发送成功"});       // 发送成功
     });
 };

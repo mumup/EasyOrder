@@ -8,11 +8,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');  				      // session依赖cookie模块
 var mongoStore = require('connect-mongo')(session);	  // 对session进行持久化
-var config = require('./config.js');
+var config = require('./config');
 
 
 mongoose.Promise = global.Promise;  //解决mongoose's default promise library
-mongoose.connect(config.url);//初始化连接
+mongoose.connect(config.Db);         //初始化连接
 
 var app = express();
 
@@ -20,7 +20,7 @@ var app = express();
 app.locals.moment = require('moment');// 引入moment模块并设置为app.locals属性,用来格式化时间
 
 
-// view engine setup
+// 模板引擎
 app.set('views', path.join(__dirname, 'views/pages'));
 app.set('view engine', 'jade');
 
@@ -58,12 +58,12 @@ walk(models_path);
 
 
 app.use(session({
-    secret:'tz',                          // 设置的secret字符串，来计算hash值并放在cookie中
+    secret:config.secret,                                      // 设置的secret字符串，来计算hash值并放在cookie中
     resave: false,                                    // session变化才进行存储
     saveUninitialized: true,
     // 使用mongo对session进行持久化，将session存储进数据库中
     store: new mongoStore({
-        url: config.url,                                     // 本地数据库地址
+        url: config.Db,                                     // 本地数据库地址
         collection: 'sessions'                          // 存储到mongodb中的字段名
     })
 }));

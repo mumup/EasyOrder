@@ -1,4 +1,5 @@
 var mongoose = require("mongoose"),
+    config = require("../../../config"),
     User = mongoose.model("User"),
     Menu = mongoose.model("Menu"),
     Order = mongoose.model("Order");
@@ -41,7 +42,7 @@ exports.index = function (req, res) {
                     }
 
                     res.render('index', {
-                        title: '点餐系统',
+                        title: config.title,
                         menuList: _menu,
                         menuNum: (MenuNum == "") ? ["0"] : MenuNum[0].menu_num,
                         orders: order
@@ -50,7 +51,7 @@ exports.index = function (req, res) {
 
             }else {
                 res.render('index', {
-                    title: '点餐系统',
+                    title: config.title,
                     menuList:""
                 })
             }
@@ -59,7 +60,7 @@ exports.index = function (req, res) {
 
     } else {                     //没有登录直接渲染主页
         res.render('index', {
-            title: '点餐系统'
+            title: config.title
         })
     }
 

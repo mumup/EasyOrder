@@ -2,11 +2,6 @@ var mongoose = require('mongoose');
 var moment = require('moment');
 var MenuSchema = new mongoose.Schema({
 
-    status:{
-        type:Number,
-        default:0
-    },
-
     menu: {
         type: Array
     },
