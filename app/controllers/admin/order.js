@@ -220,6 +220,11 @@ exports.EditOrder = function (req,res) {
 
     Order.updateOrder(_menu_num,num,_account,food,function (err,status) {
         if (err){console.log(err)}
-        console.log(status)
+        console.log(status);
+        if (status.ok == 1){
+            res.json({status:0,msg:"修改成功"})
+        }else {
+            res.json({msg:"发生错误"})
+        }
     })
 };

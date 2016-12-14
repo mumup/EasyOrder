@@ -59,7 +59,7 @@ UserSchema.methods = {
 };
 
 // 给模型添加静态方法
-UserSchema.static = {
+UserSchema.statics = {
     fetch:function (cb) {
         return this
             .find({})
@@ -69,6 +69,12 @@ UserSchema.static = {
     findById:function (id,cb) {
         return this
             .findOne({_id:id})
+            .exec(cb);
+    },
+    countUser: function (cb) {
+        return this
+            .find({})
+            .count()
             .exec(cb);
     }
 };

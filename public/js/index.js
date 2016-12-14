@@ -61,6 +61,65 @@ var login_obj = {
         })
     },
 
+    //不订餐
+    cancel_order:function () {
+        var _menu_num = $(".menu-wrap").attr("data-MenuNum");
+        var _chose    = $(".choose");
+
+        var opt = {
+            menu_num :_menu_num,
+            food :"不订餐",
+            num :0
+        };
+
+        $.ajax({
+            url:(_chose.length)?"/user/EditOrders":"/user/orders",
+            data:opt,
+            dataType:"json",
+            async:true,
+            type:'POST',
+            timeout:30000,
+            success:function (data) {
+                if(data.status == 0){
+                    if(_chose.length){
+                        $(".choose i").text("不订餐");
+                        Materialize.toast(data.msg,2000);
+                    }else {
+                        window.location.href = "/";
+                    }
+                }else {
+                    Materialize.toast(data.msg,2000);
+                }
+            }
+        })
+    },
+
+    //订单修改
+    change_order:function () {
+        var _chose = $(".select-dropdown").val();
+        if (_chose == "更改订单"){ Materialize.toast("请先选择菜单",2000);return false;}
+
+        var opt = {
+            menu_num :$(".choose").attr("data-MenuNum"),
+            food :_chose,
+            num :$(".initialized").val()
+        };
+
+        $.ajax({
+            url:"/user/EditOrders",
+            data:opt,
+            dataType:"json",
+            async:true,
+            type:'POST',
+            timeout:30000,
+            success:function (data) {
+                Materialize.toast(data.msg,2000);
+                $(".choose i").text(_chose)
+            }
+        })
+    },
+
+    //订单提交
     order_submit:function () {
         var _menu_num = $(".menu-wrap").attr("data-MenuNum");
         var _food     = login_obj.getFood();
@@ -114,8 +173,18 @@ var login_obj = {
         });
 
         //提交订单
-        $(".test").on("click",function () {
+        $(".SubmitOrder").on("click",function () {
             login_obj.order_submit();
+        });
+
+        //修改订单
+        $(".changeOrder").on("click",function () {
+            login_obj.change_order();
+        });
+
+        //不订餐
+        $(".cancelOrder").on("click",function () {
+            login_obj.cancel_order();
         });
         
         //点击菜单赋值菜名
@@ -131,34 +200,6 @@ var login_obj = {
             _this.addClass("pick");
 
         });
-        //修改订单
-        $(".changeOrder").on("click",function () {
-            var _chose = $(".select-dropdown").val();
-            if (_chose == "更改订单"){ Materialize.toast("请先选择菜单",2000);return false;}
-
-            var opt = {
-                 menu_num :$(".choose").attr("data-MenuNum"),
-                 food :_chose,
-                 num :$(".initialized").val()
-            };
-
-            $.ajax({
-                url:"/user/EditOrders",
-                data:opt,
-                dataType:"json",
-                async:true,
-                type:'POST',
-                timeout:30000,
-                success:function (data) {
-                    Materialize.toast(data.msg,2000);
-                }
-            })
-
-        })
-
-
     }
-
-
 };
 

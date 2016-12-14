@@ -13,6 +13,8 @@ nav .brand-logo {
 
 .menu-wrap {
   margin-top: 3rem; }
+  .menu-wrap .SubmitOrder {
+    margin-right: 10px; }
   .menu-wrap .btn-item span {
     margin-left: 10px; }
   .menu-wrap .choose {

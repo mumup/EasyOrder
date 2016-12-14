@@ -30,7 +30,7 @@ exports.index = function (req, res) {
                     // console.log(LastOrder[0].DishName)
 
                     var order;
-                    if (LastOrder == ""){
+                    if (LastOrder == "" || LastOrder[0].orders == ""){
                         order = "";
                     }else {
                         order = {

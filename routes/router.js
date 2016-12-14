@@ -34,8 +34,9 @@ module.exports = function (app) {
     app.get("/admin/outputWord",EasyOrder.singinRequired,EasyOrder.adminRequired,Order.outputWord);           //导出word表单
     app.get("/admin/outputExcel",EasyOrder.singinRequired,EasyOrder.adminRequired,Order.outputExcel);           //导出Excel表单
 
+    app.get("/admin/getSysInfo",Admin.getSysInfo);                                                           //admin首页信息接口
     app.post("/user/orders",EasyOrder.singinRequired,Order.order);                                           //首页下单接口
-    app.get("/user/EditOrders",Order.EditOrder);
+    app.post("/user/EditOrders",Order.EditOrder);
 
 
 
