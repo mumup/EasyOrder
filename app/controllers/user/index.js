@@ -13,17 +13,18 @@ exports.index = function (req, res) {
 
         Menu.findByMenuNum({"meta.createAt": {"$gt":new Date(moment(Date.now()).format("YYYY-MM-DD"))}}, 1, function (err, MenuNum) {
 
+            console.log(MenuNum);
             if (err){console.log(err)}
 
             var _menu = [];
 
-            if (MenuNum != "") {
+            if (MenuNum != "" && MenuNum[0].status == 0) {                                   //循环撸菜单编码{num:1,dishName:什么鬼}
                 var _menuList = MenuNum[0].menu;
                 for (var i = 0; i < _menuList.length; i++) {
                     _menu.push({num: i + 1, dishName: _menuList[i]})
                 }
 
-                Order.findLastOrder(MenuNum[0].menu_num, _user, function (err, LastOrder) {
+                Order.findLastOrder(MenuNum[0].menu_num, _user, function (err, LastOrder) {       //找到用户今天最新的一个单
 
 
                     console.log(LastOrder)
@@ -41,7 +42,7 @@ exports.index = function (req, res) {
                         console.log(order)
                     }
 
-                    res.render('index', {
+                    res.render('index', {             //有菜单,用户有最新订单
                         title: config.title,
                         menuList: _menu,
                         menuNum: (MenuNum == "") ? ["0"] : MenuNum[0].menu_num,
@@ -50,7 +51,7 @@ exports.index = function (req, res) {
                 });
 
             }else {
-                res.render('index', {
+                res.render('index', {    //登陆没最新菜单直接渲染空菜单表
                     title: config.title,
                     menuList:""
                 })

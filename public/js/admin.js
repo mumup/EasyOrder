@@ -11,6 +11,23 @@ var admin_tools = {
     },
 
 
+    //停止下单
+    stopOrder:function (num) {
+        $.ajax({
+            url:"/admin/stop_order?num=" + num ,
+            type:'GET',
+            timeout:10000,
+            success:function (data) {
+                var status = data["status"];
+                if (status == 1){
+                    Materialize.toast('截止成功', 2000)
+                }else {
+                    Materialize.toast('发生错误', 2000)
+                }
+            }
+        });
+        alert(num)
+    },
 
 //admin添加用户
     df_submit:function () {
@@ -78,6 +95,12 @@ var admin_tools = {
 
         $("#adduser-sub").on("click",function (e) {
             admin_tools.df_submit();
+            e.preventDefault()
+        });
+
+        $(".stopOrder").on("click",function (e) {
+            var num = $(".stopOrder").data("menunum");
+            admin_tools.stopOrder(num);
             e.preventDefault()
         });
 

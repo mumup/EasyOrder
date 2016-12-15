@@ -13,10 +13,6 @@ var OrderSchema = new mongoose.Schema({
         type: Number
     },
 
-    status: {
-        type: Number,
-        default: 0
-    },
 
     orders: [
         {

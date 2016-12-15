@@ -25,6 +25,7 @@ module.exports = function (app) {
 
     app.route("/admin/menu").get(EasyOrder.singinRequired,EasyOrder.adminRequired,Menu.index)               //用户菜单接口
                               .delete(Menu.del);                                                             //删除菜单接口
+    app.get("/admin/stop_order",EasyOrder.adminRequired,Menu.stopOrder);                                     //停止订餐
 
     app.post("/admin/getMenuList",EasyOrder.singinRequired,EasyOrder.adminRequired,Menu.sendMenu);            //发送菜单接口
 
@@ -36,7 +37,7 @@ module.exports = function (app) {
 
     app.get("/admin/getSysInfo",Admin.getSysInfo);                                                           //admin首页信息接口
     app.post("/user/orders",EasyOrder.singinRequired,Order.order);                                           //首页下单接口
-    app.post("/user/EditOrders",Order.EditOrder);
+    app.post("/user/EditOrders",Order.EditOrder);                                                             //修改订单接口
 
 
 

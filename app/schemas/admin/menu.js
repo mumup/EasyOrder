@@ -17,6 +17,10 @@ var MenuSchema = new mongoose.Schema({
             type: Date,
             default: Date.now
         }
+    },
+    status: {
+        type: Number,
+        default: 0
     }
 });
 
@@ -29,9 +33,19 @@ MenuSchema.statics = {
             .sort('meta.updateAt')
             .exec(cb);
     },
-    findById: function (id, cb) {
+    findByMenuNun: function (num, cb) {
         return this
-            .findOne({_id: id})
+            .findOne({menu_num:num})
+            .exec(cb);
+    },
+
+    updateOrder: function (num,cb) {
+        return this
+            .update({"menu_num": num}, {
+                $set: {
+                    "status": 1
+                }
+            })
             .exec(cb);
     },
 

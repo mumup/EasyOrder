@@ -31,6 +31,8 @@ exports.del = function(req,res) {
             if(err){
                 console.log(err);
             }
+            Order.remove({menu_num:num},function(err) {if (err)console.log(err)});        //删除菜单的同时把订单也干掉
+
             res.json({status:1,msg:"删除成功"});              // 删除成功
         });
     }else {
@@ -38,6 +40,20 @@ exports.del = function(req,res) {
     }
 };
 
+//停止订餐
+exports.stopOrder = function (req,res) {
+    var MenuNum  = req.query.num;
+    if (!MenuNum){
+        return res.send("黑人问号脸.jpg？？？")
+    }
+
+    Menu.updateOrder(MenuNum,function (err,status) {
+        if (err){
+            console.log(err);
+        }
+        res.json({"status":status.ok,"msg":"修改成功"})
+    })
+};
 
 
 //接收菜单列表储存
