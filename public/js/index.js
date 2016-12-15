@@ -113,8 +113,12 @@ var login_obj = {
             type:'POST',
             timeout:30000,
             success:function (data) {
-                Materialize.toast(data.msg,2000);
-                $(".choose i").text(_chose)
+                if(data.status != 2){
+                    Materialize.toast(data.msg,2000);
+                    $(".choose i").text(_chose)
+                }else {
+                    Materialize.toast(data.msg,2000);
+                }
             }
         })
     },

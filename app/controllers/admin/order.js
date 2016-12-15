@@ -218,13 +218,18 @@ exports.EditOrder = function (req,res) {
     var food = req.body.food || "";
     var num = req.body.num || "";
 
-    Order.updateOrder(_menu_num,num,_account,food,function (err,status) {
-        if (err){console.log(err)}
-        console.log(status);
-        if (status.ok == 1){
-            res.json({status:0,msg:"修改成功"})
-        }else {
-            res.json({msg:"发生错误"})
-        }
+    Menu.findByMenuNum({},1, function (err, MenuNum) {//拿到最新菜单编号
+        Order.updateOrder(_menu_num,num,_account,food,function (err,status) {
+            console.log(MenuNum);
+            if (err){console.log(err)}
+            if (MenuNum[0].status != 0) {
+                return res.json({status: 1, msg: "更改失败,该订单已截止"});      //如果不匹配
+            }
+            if (status.ok == 1){
+                res.json({status:0,msg:"修改成功"})
+            }else {
+                res.json({msg:"发生错误"})
+            }
+        })
     })
 };
