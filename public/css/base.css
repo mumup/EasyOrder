@@ -1,20 +1,23 @@
+@charset "UTF-8";
 .side-nav {
   width: 200px; }
 
 body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  min-height: 100vh;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column; }
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", serif; }
+
+.page-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0; }
 
 main {
   -webkit-box-flex: 1;
   -ms-flex: 1 0 auto;
-  flex: 1 0 auto; }
+  flex: 1 0 auto;
+  height: 100%; }
 
 .side-nav a {
   font-size: 20px; }
