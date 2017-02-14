@@ -84,4 +84,4 @@ $ forever start ./bin/www
 <a name="A4"></a>
 
 ## 实例
-[猛击这里](http://139.219.231.243/)账号admin密码admin
+[猛击这里](http://eo.pmumu.com/)账号admin密码admin
