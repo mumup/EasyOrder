@@ -1,6 +1,7 @@
-var mongoose = require("mongoose"),
-    MenuSchema = require("../../schemas/admin/menu");
+var mongoose = require('mongoose')
 
-var Menu = mongoose.model("Menu",MenuSchema);
+var MenuSchema = require('../../schemas/admin/menu')
 
-module.exports = Menu;
+var Menu = mongoose.model('Menu', MenuSchema)
+
+module.exports = Menu

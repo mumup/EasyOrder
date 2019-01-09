@@ -1,6 +1,5 @@
-var mongoose = require("mongoose"),
-    OrderSchema = require("../../schemas/admin/order");
+var mongoose = require('mongoose')
+var OrderSchema = require('../../schemas/admin/order')
+var Order = mongoose.model('Order', OrderSchema)
 
-var Order = mongoose.model("Order",OrderSchema);
-
-module.exports = Order;
+module.exports = Order
