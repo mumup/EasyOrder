@@ -1,0 +1,1 @@
+{ "_id" : { "$oid" : "5e9eff60ec49552714ade0e8" }, "meta" : { "createAt" : { "$date" : "2020-04-21T14:12:48.427+0000" } }, "role" : 50, "account" : "admin", "password" : "$2b$10$KPgi98gotmAkSUKk1W/vWeZRcUWs152kR2deHiuU6TC05IgfUuGu2", "__v" : 0 }
