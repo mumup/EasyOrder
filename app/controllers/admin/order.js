@@ -7,7 +7,7 @@ var officegen = require('officegen')
 exports.index = function (req, res) { // 菜单主页
   Order.findOrder({ 'meta.createAt': { '$gt': moment().format('YYYY-MM-DD') } }, 1, function (err, order) {
     if (err) console.log(err)
-    if (order) {
+    if (order.length > 0) {
       Menu.findByMenuNum({}, 1, function (err, MenuNum) { // 拿到最新菜单编号
         console.log(err)
         if (order[0].menu_num !== MenuNum[0].menu_num) {

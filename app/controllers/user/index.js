@@ -13,7 +13,7 @@ exports.index = function (req, res) {
       console.log(MenuNum)
       if (err) { console.log(err) }
       var _menu = []
-      if (MenuNum !== '' && MenuNum[0].status === 0) { // 循环撸菜单编码{num:1,dishName:什么鬼}
+      if (MenuNum.length > 0 && MenuNum[0].status === 0) { // 循环撸菜单编码{num:1,dishName:什么鬼}
         var _menuList = MenuNum[0].menu
         for (var i = 0; i < _menuList.length; i++) {
           _menu.push({ num: i + 1, dishName: _menuList[i] })
