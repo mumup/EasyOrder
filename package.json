@@ -1,5 +1,5 @@
 {
-  "name": "EasyOrder",
+  "name": "easy_order",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -8,15 +8,15 @@
   },
   "dependencies": {
     "bcrypt": "^3.0.2",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "connect-mongo": "^2.0.3",
-    "cookie-parser": "^1.4.3",
+    "cookie-parser": "^1.4.5",
     "debug": "~2.6.9",
-    "express": "^4.16.4",
-    "express-session": "^1.15.6",
-    "moment": "^2.23.0",
-    "mongoose": "^5.4.2",
-    "pug": "^2.0.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.10",
+    "pug": "^2.0.4",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
