@@ -10,9 +10,11 @@ var session = require('express-session') // session依赖cookie模块
 var MongoStore = require('connect-mongo')(session) // 对session进行持久化
 var config = require('./config')
 
-mongoose.Promise = global.Promise// 解决mongoose's default promise library
 mongoose.connect(config.Db, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  autoIndex: false,
+  useCreateIndex: true
 })// 初始化连接
 
 var app = express()
