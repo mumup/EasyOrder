@@ -21,18 +21,18 @@
   },
   "devDependencies": {
     "bower": "^1.8.8",
-    "browser-sync": "^2.26.3",
-    "eslint": "^5.12.0",
+    "browser-sync": "^2.26.7",
+    "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^6.0.0",
-    "gulp-nodemon": "^2.4.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-nodemon": "^2.5.0",
     "gulp-sass": "^4.0.2",
-    "morgan": "^1.9.1",
-    "officegen": "^0.4.0"
+    "morgan": "^1.10.0",
+    "officegen": "^0.4.8"
   }
 }
